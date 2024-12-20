@@ -4,42 +4,288 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team - Jana Academy</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --text-light: #7f8c8d;
+            --background-light: #f9f9f9;
+            --background-gradient: linear-gradient(135deg, #f6f9fc 0%, #edf3f8 100%);
+            --font-arabic: 'Noto Sans Arabic', 'Traditional Arabic', system-ui;
+            --font-english: 'Poppins', Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-english);
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Header styles */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        /* Team page specific styles */
+        .team-hero {
+            background: var(--background-gradient);
+            padding: 4rem 2rem;
+            text-align: center;
+            padding-top: 10%;
+        }
+
+        .team-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .team-hero p {
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        .team-grid {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info h3 {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-info p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .credentials {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--background-light);
+            border-radius: 8px;
+        }
+
+        .credentials h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .credentials ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
+  <header id="header">
     <nav>
-        <div class="logo"><a href="index.html">Jana Academy</a></div>
+        <a href="index.html" class="logo">
+          <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
+          <span class="logo-text">Jana Academy</span>
+        </a>
         <ul class="nav-links">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="team.html">Our Team</a></li>
-        <li><a href="curriculum.html">Curriculum</a></li>
-        <li><a href="#signup" class="cta">Sign up</a></li>
-      </ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="team.html">Our Team</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <section id="team">
-    <h2>Meet Our Team</h2>
+
+
+    <section class="team-hero">
+        <h1>Meet Our Team</h1>
+        <p>Dedicated educators shaping the future of our students</p>
+    </section>
+
     <div class="team-grid">
-      <div class="team-member">
-        <img src="teacher1.jpg" alt="Jana Nawras">
-        <h3>Jana Nawras</h3>
-        <p>Curriculum Manager</p>
-      </div>
-      <div class="team-member">
-        <img src="teacher2.jpg" alt="Randah Hourani">
-        <h3>Randah Hourani</h3>
-        <p>Principal & Family Counselor</p>
-      </div>
-      <!-- Add more team members as needed -->
-    </div>
-  </section>
+        <!-- Sarah Ahmad -->
+        <div class="team-member" data-aos="fade-up">
+            <div class="member-image">
+                <img src="/api/placeholder/400/500" alt="Jana Nawras Taifour">
+            </div>
+            <div class="member-info">
+                <h2>Jana Nawras Taifour</h2>
+                <h3>Curriculum Manager, Vice Prinicpal and English Teacher (Grades 2-3)</h3>
+                <p>With over 15 years of experience in Islamic education, Jana is passionate about a hands on learning approach, active learning and skill based development. </p>
+                <div class="credentials">
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>Masters of Education, UofT Graduate</li>
+                        <li>Bachelors of English from Abu Dhabi University</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-  <footer>
-    <p>&copy; 2024 Jana Academy. All rights reserved.</p>
-  </footer>
+        <!-- Mohammad Hassan -->
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-image">
+                <img src="/api/placeholder/400/500" alt="Randah Hourani">
+            </div>
+            <div class="member-info">
+                <h2>Randah Hourani</h2>
+                <h3>Prinicpal</h3>
+                <p>Education and family counsellor.</p>
+                <div class="credentials">
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+        <!-- Aisha Rahman -->
+        <!-- <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+            <div class="member-image">
+                <img src="/api/placeholder/400/500" alt="Aisha Rahman">
+            </div>
+            <div class="member-info">
+                <h2>Aisha Rahman</h2>
+                <h3>Early Years Education Specialist</h3>
+                <p>Aisha specializes in early childhood Islamic education, creating engaging and age-appropriate learning experiences for our youngest students.</p>
+                <div class="credentials">
+                    <h4>Credentials</h4>
+                    <ul>
+                        <li>BSc in Early Childhood Education</li>
+                        <li>Islamic Studies Diploma</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>

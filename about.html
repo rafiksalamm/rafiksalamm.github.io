@@ -32,11 +32,18 @@
 
         /* Header Styles */
         header {
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -49,10 +56,21 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
         }
 
         .nav-links {
@@ -90,11 +108,12 @@
             background: var(--background-gradient);
             padding: 6rem 2rem;
             text-align: center;
+            padding-top: 10%;
         }
 
         .about-hero h1 {
             font-size: 3rem;
-            color: var(--text-color);
+            color: var(--primary-color);
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.6s ease;
         }
@@ -103,7 +122,7 @@
             max-width: 800px;
             margin: 0 auto;
             font-size: 1.2rem;
-            color: var(--text-light);
+            color: var(--pr);
             animation: fadeInUp 0.8s ease;
         }
 
@@ -247,17 +266,20 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <a href="index.html" class="logo">Jana Academy</a>
+            <a href="index.html" class="logo">
+                <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
+                <span class="logo-text">Jana Academy</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="about.html">About Us</a></li>
-                <!-- <li><a href="team.html">Our Team</a></li>
-                <li><a href="curriculum.html">Curriculum</a></li>
-                <li><a href="#signup" class="cta">Sign up</a></li> -->
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="team.html">Our Team</a></li>
             </ul>
         </nav>
     </header>
+
     
     <section class="about-hero">
         <h1>About Jana Academy</h1>
