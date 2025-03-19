@@ -6,6 +6,8 @@
     <title>Gallery - Jana Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -15,6 +17,7 @@
             --background-light: #f9f9f9;
             --background-gradient: linear-gradient(135deg, #f6f9fc 0%, #edf3f8 100%);
             --font-english: 'Poppins', Arial, sans-serif;
+            --font-arabic: 'Noto Sans Arabic', Arial, sans-serif;
         }
 
         * {
@@ -27,6 +30,19 @@
             font-family: var(--font-english);
             line-height: 1.6;
             color: var(--text-color);
+        }
+
+        /* RTL Support for Arabic */
+        html[lang="ar"] body {
+            font-family: var(--font-arabic);
+            direction: rtl;
+        }
+
+        html[lang="ar"] .filter-button,
+        html[lang="ar"] h1,
+        html[lang="ar"] p,
+        html[lang="ar"] a {
+            font-family: var(--font-arabic);
         }
 
         /* Header styles */
@@ -62,8 +78,13 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 80px;
             width: auto;
+            transition: height 0.3s ease;
+        }
+
+        header.scrolled .logo img {
+            height: 70px;
         }
 
         .logo-text {
@@ -85,82 +106,539 @@
             transition: color 0.3s ease;
         }
 
+        .cta-button {
+            background: var(--primary-color);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .cta-button i {
+            font-size: 1.1em;
+            margin-top: 1px;
+        }
+
         .nav-links a:hover {
             color: var(--primary-color);
         }
 
         /* Gallery specific styles */
         .gallery-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
             background: var(--background-gradient);
-            padding: 6rem 2rem;
             text-align: center;
-            padding-top: 10%;
         }
 
         .gallery-hero h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
 
         .gallery-hero p {
-            color: var(--text-color);
-            max-width: 600px;
-            margin: 0 auto;
             font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gallery-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: nowrap;
+            gap: 1rem;
+        }
+
+        .gallery-filter > div {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .filter-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--background-light);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        html[lang="ar"] .filter-button {
+            font-family: var(--font-arabic);
+        }
+
+        .filter-button:hover, .filter-button.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
         }
 
         .gallery-grid {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .gallery-item {
-            aspect-ratio: 1;
-            border-radius: 15px;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
+            height: 300px;
+            transition: transform 0.3s ease;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .gallery-item.hidden {
+            display: none;
         }
 
         .gallery-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
         .gallery-item:hover img {
             transform: scale(1.05);
         }
 
-        /* Responsive Design */
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item-overlay h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
         @media (max-width: 768px) {
             .gallery-hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                padding: 0 1rem;
-                margin: 2rem auto;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+
+            .filter-button {
+                padding: 10px 15px;
+                margin: 5px;
+                border-radius: 20px;
+                background-color: var(--background-light);
+                color: var(--text-color);
+                border: none;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 90px;
+                display: inline-block;
+            }
+            
+            .filter-button:hover, .filter-button.active {
+                background-color: var(--primary-color);
+                color: white;
+                transform: translateY(-2px);
+            }
+            
+            .gallery-filter {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 20px;
+                gap: 5px;
+            }
+            
+            /* For Arabic support in buttons */
+            html[lang="ar"] .filter-button {
+                font-family: var(--font-arabic);
+                font-weight: 500;
+            }
+            
+            /* Fix for mobile filtering */
+            .gallery-section[data-current-filter="facility"] .gallery-item:not([data-category="facility"]),
+            .gallery-section[data-current-filter="activities"] .gallery-item:not([data-category="activities"]) {
+                display: none;
             }
         }
 
-        @media (max-width: 480px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            z-index: 1001;
+            width: 30px;
+            height: 25px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(1) {
+            top: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(2) {
+            top: 10px;
+        }
+
+        .mobile-menu-toggle span:nth-child(3) {
+            top: 20px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu .cta-button {
+            width: 100%;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .mobile-menu li:last-child {
+            margin-bottom: 0;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Overlay when menu is open */
+        body.menu-open::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
             }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block !important;
+                z-index: 9999 !important;
+                cursor: pointer !important;
+            }
+            
+            /* Make hamburger menu more visible and ensure it's positioned correctly */
+            nav {
+                position: relative;
+            }
+            
+            .mobile-menu-toggle {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 10px;
+                background: rgba(255,255,255,0.8);
+                border-radius: 4px;
+            }
+            
+            html[lang="en"] .mobile-menu-toggle {
+                right: 15px;
+            }
+            
+            html[lang="ar"] .mobile-menu-toggle {
+                left: 15px;
+            }
+            
+            .mobile-menu-toggle span {
+                background-color: #000 !important;
+            }
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+        }
+
+        .language-switcher button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-switcher button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: auto;
+                left: 20px;
+            }
+        }
+
+        /* Language-specific filter visibility */
+        .filter-button[data-lang-ar] {
+            display: none;
+        }
+        
+        html[lang="ar"] .filter-button[data-lang-en] {
+            display: none;
+        }
+        
+        html[lang="ar"] .filter-button[data-lang-ar] {
+            display: inline-block;
+        }
+        
+        @media (max-width: 768px) {
+            /* Ensure the same rules apply on mobile */
+            html[lang="ar"] .filter-button[data-lang-en] {
+                display: none !important;
+            }
+            
+            html[lang="ar"] .filter-button[data-lang-ar] {
+                display: inline-block !important;
+            }
+            
+            html[lang="en"] .filter-button[data-lang-ar] {
+                display: none !important;
+            }
+        }
+
+        /* Language-specific navigation display */
+        .en-nav, .ar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        /* Default show English, hide Arabic */
+        .ar-nav, .ar-menu {
+            display: none;
+        }
+        
+        /* When language is Arabic */
+        html[lang="ar"] .en-nav, 
+        html[lang="ar"] .en-menu {
+            display: none;
+        }
+        
+        html[lang="ar"] .ar-nav {
+            display: flex;
+        }
+        
+        html[lang="ar"] .ar-menu {
+            display: block;
+        }
+        
+        /* Mobile menu positioning for RTL */
+        html[lang="ar"] .mobile-menu {
+            left: -100%;
+            right: auto;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        html[lang="ar"] .mobile-menu.active {
+            left: 0;
+            right: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .en-nav, .ar-nav {
+                display: none; /* Hide both on mobile */
+            }
+        }
+
+        /* Contact info styling */
+        .contact-info {
+            unicode-bidi: plaintext;
+            direction: ltr;
+            display: inline-block;
+        }
+        
+        /* Mobile menu RTL support */
+        html[lang="ar"] .mobile-menu {
+            left: -100%;
+            right: auto;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        html[lang="ar"] .mobile-menu.active {
+            left: 0;
+            right: auto;
+        }
+        
+        /* Language-specific content */
+        [data-lang-ar] {
+            display: none;
+        }
+        
+        html[lang="ar"] [data-lang-ar] {
+            display: block;
+        }
+        
+        html[lang="ar"] [data-lang-en] {
+            display: none;
+        }
+
+        /* Gallery hero content */
+        html[lang="ar"] .gallery-hero .container [data-lang-ar] {
+            display: block;
+        }
+        
+        html[lang="ar"] .gallery-hero .container [data-lang-en] {
+            display: none;
         }
     </style>
 </head>
@@ -169,135 +647,496 @@
         <nav>
             <a href="index.html" class="logo">
                 <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
-                <span class="logo-text">Jana Academy</span>
             </a>
             <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="team.html">Our Team</a></li>
+                <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en><i class="fas fa-user-plus"></i> Register Now!</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar><i class="fas fa-user-plus"></i> سجل الآن</a></li>
             </ul>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                    <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                    <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                    <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                    <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en>
+                            <i class="fas fa-user-plus"></i> Register Now!
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar>
+                            <i class="fas fa-user-plus"></i> سجل الآن
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
-
-    <section class="gallery-hero">
-        <h1>Our Gallery</h1>
-        <p>Life at Jana Academy in Pictures</p>
-    </section>
-
-    <div class="gallery-grid">
-        <!-- Gallery items with corrected image paths -->
-        <div class="gallery-item" data-aos="fade-up">
-            <img src="janaacademy_gallery/jana1 (1).jpeg" alt="Jana Academy Image 1">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
-            <img src="janaacademy_gallery/jana1 (2).jpeg" alt="Jana Academy Image 2">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="janaacademy_gallery/jana1 (3).jpeg" alt="Jana Academy Image 3">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
-            <img src="janaacademy_gallery/jana1 (4).jpeg" alt="Jana Academy Image 4">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="janaacademy_gallery/jana1 (5).jpeg" alt="Jana Academy Image 5">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
-            <img src="janaacademy_gallery/jana1 (6).jpeg" alt="Jana Academy Image 6">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="janaacademy_gallery/jana1 (7).jpeg" alt="Jana Academy Image 7">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="350">
-            <img src="janaacademy_gallery/jana1 (8).jpeg" alt="Jana Academy Image 8">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-            <img src="janaacademy_gallery/jana1 (9).jpeg" alt="Jana Academy Image 9">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="450">
-            <img src="janaacademy_gallery/jana1 (10).jpeg" alt="Jana Academy Image 10">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-            <img src="janaacademy_gallery/jana1 (11).jpeg" alt="Jana Academy Image 11">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="550">
-            <img src="janaacademy_gallery/jana1 (12).jpeg" alt="Jana Academy Image 12">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
-            <img src="janaacademy_gallery/jana1 (13).jpeg" alt="Jana Academy Image 13">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="650">
-            <img src="janaacademy_gallery/jana1 (14).jpeg" alt="Jana Academy Image 14">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="700">
-            <img src="janaacademy_gallery/jana1 (15).jpeg" alt="Jana Academy Image 15">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="750">
-            <img src="janaacademy_gallery/jana1 (16).jpeg" alt="Jana Academy Image 16">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="800">
-            <img src="janaacademy_gallery/jana1 (17).jpeg" alt="Jana Academy Image 17">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="850">
-            <img src="janaacademy_gallery/jana1 (18).jpeg" alt="Jana Academy Image 18">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="900">
-            <img src="janaacademy_gallery/jana1 (19).jpeg" alt="Jana Academy Image 19">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="950">
-            <img src="janaacademy_gallery/jana1 (20).jpeg" alt="Jana Academy Image 20">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1000">
-            <img src="janaacademy_gallery/jana1 (21).jpeg" alt="Jana Academy Image 21">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1050">
-            <img src="janaacademy_gallery/jana1 (22).jpeg" alt="Jana Academy Image 22">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1100">
-            <img src="janaacademy_gallery/jana1 (23).jpeg" alt="Jana Academy Image 23">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1150">
-            <img src="janaacademy_gallery/jana1 (24).jpeg" alt="Jana Academy Image 24">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1200">
-            <img src="janaacademy_gallery/jana1 (25).jpeg" alt="Jana Academy Image 25">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1250">
-            <img src="janaacademy_gallery/jana1 (26).jpeg" alt="Jana Academy Image 26">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1300">
-            <img src="janaacademy_gallery/jana1 (27).jpeg" alt="Jana Academy Image 27">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1350">
-            <img src="janaacademy_gallery/jana1 (28).jpeg" alt="Jana Academy Image 28">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1400">
-            <img src="janaacademy_gallery/jana1 (29).jpeg" alt="Jana Academy Image 29">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1450">
-            <img src="janaacademy_gallery/jana1 (30).jpeg" alt="Jana Academy Image 30">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1500">
-            <img src="janaacademy_gallery/jana1 (31).jpeg" alt="Jana Academy Image 31">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1550">
-            <img src="janaacademy_gallery/jana1 (32).jpeg" alt="Jana Academy Image 32">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1600">
-            <img src="janaacademy_gallery/jana1 (33).jpeg" alt="Jana Academy Image 33">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1650">
-            <img src="janaacademy_gallery/jana1 (34).jpeg" alt="Jana Academy Image 34">
-        </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="1700">
-            <img src="janaacademy_gallery/jana1 (35).jpeg" alt="Jana Academy Image 35">
-        </div>
+    <div class="language-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">عربي</button>
     </div>
 
+    <section class="gallery-hero">
+        <div class="container" data-bilingual>
+            <div data-lang-en>
+                <h1 data-aos="fade-up">Our Gallery</h1>
+                <p data-aos="fade-up" data-aos-delay="100">Take a visual journey through the vibrant life at Jana Academy.</p>
+            </div>
+            <div data-lang-ar>
+                <h1 data-aos="fade-up">معرض الصور</h1>
+                <p data-aos="fade-up" data-aos-delay="100">خذ رحلة بصرية عبر الحياة النابضة بالحيوية في أكاديمية جنى.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="gallery-container">
+            <div class="gallery-filter" data-aos="fade-up">
+                <!-- English Filters -->
+                <button class="filter-button active" data-filter="all" data-lang-en>All</button>
+                <button class="filter-button" data-filter="facility" data-lang-en>Facility</button>
+                <button class="filter-button" data-filter="activities" data-lang-en>Activities</button>
+                
+                <!-- Arabic Filters -->
+                <button class="filter-button active" data-filter="all" data-lang-ar>الكل</button>
+                <button class="filter-button" data-filter="facility" data-lang-ar>المرافق</button>
+                <button class="filter-button" data-filter="activities" data-lang-ar>الأنشطة</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Facility Images -->
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (1).jpeg" alt="Jana Academy Facility 1">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (2).jpeg" alt="Jana Academy Facility 2">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (3).jpeg" alt="Jana Academy Facility 3">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (4).jpeg" alt="Jana Academy Facility 4">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (5).jpeg" alt="Jana Academy Facility 5">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (6).jpeg" alt="Jana Academy Facility 6">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (7).jpeg" alt="Jana Academy Facility 7">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (8).jpeg" alt="Jana Academy Facility 8">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (9).jpeg" alt="Jana Academy Facility 9">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (10).jpeg" alt="Jana Academy Facility 10">
+                </div>
+
+                <div class="gallery-item" data-category="facility" data-aos="fade-up">
+                    <img src="facility/facility (11).jpeg" alt="Jana Academy Facility 11">
+                </div>
+
+                <!-- Activities Images -->
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (1).jpeg" alt="Jana Academy Activities 1">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (2).jpeg" alt="Jana Academy Activities 2">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (3).jpeg" alt="Jana Academy Activities 3">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (4).jpeg" alt="Jana Academy Activities 4">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (5).jpeg" alt="Jana Academy Activities 5">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (6).jpeg" alt="Jana Academy Activities 6">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (7).jpeg" alt="Jana Academy Activities 7">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (8).jpeg" alt="Jana Academy Activities 8">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (9).jpeg" alt="Jana Academy Activities 9">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (10).jpeg" alt="Jana Academy Activities 10">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (11).jpeg" alt="Jana Academy Activities 11">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (12).jpeg" alt="Jana Academy Activities 12">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (13).jpeg" alt="Jana Academy Activities 13">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (14).jpeg" alt="Jana Academy Activities 14">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (15).jpeg" alt="Jana Academy Activities 15">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (16).jpeg" alt="Jana Academy Activities 16">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (17).jpeg" alt="Jana Academy Activities 17">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (18).jpeg" alt="Jana Academy Activities 18">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (19).jpeg" alt="Jana Academy Activities 19">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (20).jpeg" alt="Jana Academy Activities 20">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (21).jpeg" alt="Jana Academy Activities 21">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (22).jpeg" alt="Jana Academy Activities 22">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (23).jpeg" alt="Jana Academy Activities 23">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (24).jpeg" alt="Jana Academy Activities 24">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (25).jpeg" alt="Jana Academy Activities 25">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (26).jpeg" alt="Jana Academy Activities 26">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (27).jpeg" alt="Jana Academy Activities 27">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (28).jpeg" alt="Jana Academy Activities 28">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (29).jpeg" alt="Jana Academy Activities 29">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (30).jpeg" alt="Jana Academy Activities 30">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (31).jpeg" alt="Jana Academy Activities 31">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (32).jpeg" alt="Jana Academy Activities 32">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (33).jpeg" alt="Jana Academy Activities 33">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (34).jpeg" alt="Jana Academy Activities 34">
+                </div>
+
+                <div class="gallery-item" data-category="activities" data-aos="fade-up">
+                    <img src="janaacademy_gallery/jana1 (35).jpeg" alt="Jana Academy Activities 35">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Phone: <span class="contact-info">416-771-3722</span></li>
+                        <li>Email: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>Address: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li>الهاتف: <span class="contact-info">416-771-3722</span></li>
+                        <li>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>العنوان: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="team.html">فريقنا</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#linkedin">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>تابعنا</h3>
+                    <ul>
+                        <li><a href="#facebook">فيسبوك</a></li>
+                        <li><a href="#instagram">انستغرام</a></li>
+                        <li><a href="#twitter">تويتر</a></li>
+                        <li><a href="#linkedin">لينكد إن</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        // Direct hamburger menu toggle function that works regardless of script loading
+        function toggleMobileMenu(element) {
+            console.log("Mobile menu toggle clicked");
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!mobileMenu) {
+                console.error("Mobile menu element not found!");
+                return;
+            }
+            
+            // Toggle active class on the hamburger icon
+            element.classList.toggle('active');
+            
+            // Toggle active class on the mobile menu
+            mobileMenu.classList.toggle('active');
+            
+            // Toggle menu-open class on the body
+            document.body.classList.toggle('menu-open');
+            
+            // Add a click outside to close feature
+            if (mobileMenu.classList.contains('active')) {
+                setTimeout(function() {
+                    document.addEventListener('click', closeMenuOnClickOutside);
+                }, 100);
+            } else {
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+            
+            // Prevent event from bubbling up
+            event.stopPropagation();
+        }
+        
+        // Helper function to close menu when clicking outside
+        function closeMenuOnClickOutside(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            
+            if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                document.removeEventListener('click', closeMenuOnClickOutside);
+            }
+        }
+        
+        // Custom gallery filtering for mobile and desktop
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const langButtons = document.querySelectorAll('.language-switcher button');
+            
+            // Language switching function
+            function switchLanguage(lang) {
+                console.log("Switching to language:", lang);
+                
+                // Set the HTML lang attribute
+                document.documentElement.lang = lang;
+                
+                // Update active state on language buttons
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                });
+                
+                // Update bilingual containers
+                document.querySelectorAll('[data-bilingual]').forEach(container => {
+                    const enContent = container.querySelector('[data-lang-en]');
+                    const arContent = container.querySelector('[data-lang-ar]');
+                    
+                    if (enContent && arContent) {
+                        enContent.style.display = lang === 'en' ? '' : 'none';
+                        arContent.style.display = lang === 'ar' ? '' : 'none';
+                    }
+                });
+                
+                // RTL support for Arabic
+                if (lang === 'ar') {
+                    document.body.style.direction = 'rtl';
+                } else {
+                    document.body.style.direction = 'ltr';
+                }
+                
+                // Reset filter buttons and apply default filter
+                resetFilters(lang);
+            }
+            
+            // Reset filters and apply default "all" filter for the current language
+            function resetFilters(lang) {
+                // Reset active state on filter buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Get the "all" button for the current language
+                const allButton = document.querySelector(`.filter-button[data-filter="all"][data-lang-${lang}]`);
+                if (allButton) {
+                    allButton.classList.add('active');
+                    applyFilter('all');
+                }
+            }
+            
+            // Apply filter function
+            function applyFilter(filter) {
+                console.log('Applying filter:', filter);
+                
+                galleryItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                    } else if (category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Add click event listeners to filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const lang = document.documentElement.lang || 'en';
+                    const buttonLang = this.hasAttribute('data-lang-en') ? 'en' : 'ar';
+                    
+                    // Only process buttons matching current language
+                    if ((lang === 'en' && buttonLang === 'en') || (lang === 'ar' && buttonLang === 'ar')) {
+                        // Remove active class from all buttons for this language
+                        document.querySelectorAll(`.filter-button[data-lang-${lang}]`).forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Apply filter
+                        applyFilter(this.getAttribute('data-filter'));
+                    }
+                });
+            });
+            
+            // Language switcher click events
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const newLang = this.getAttribute('data-lang');
+                    
+                    // Save language preference
+                    localStorage.setItem('janaAcademyLanguage', newLang);
+                    
+                    // Switch language
+                    switchLanguage(newLang);
+                });
+            });
+            
+            // Initialize with saved language or default to English
+            const savedLang = localStorage.getItem('janaAcademyLanguage') || 'en';
+            switchLanguage(savedLang);
         });
     </script>
 </body>

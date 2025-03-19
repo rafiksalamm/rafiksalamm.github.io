@@ -6,6 +6,8 @@
     <title>Jana Academy - Islamic Preschool Excellence</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -66,8 +68,14 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 80px;
             width: auto;
+            transition: height 0.3s ease;
+        }
+
+        /* When header is scrolled, slightly reduce the logo size */
+        header.scrolled .logo img {
+            height: 70px;
         }
 
         .logo-text {
@@ -108,18 +116,173 @@
 
         .cta-button {
             background: var(--primary-color);
-            color: white;
+            color: white !important;
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
             transition: all 0.3s ease;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            text-align: center;
         }
 
         .cta-button:hover {
             background: var(--secondary-color);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .cta-button i {
+            font-size: 1.1em;
+            margin-top: 1px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            align-items: center;
+        }
+
+        .hero-buttons .cta-button {
+            min-width: 200px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color) !important;
+        }
+
+        .hero-buttons .cta-button.secondary:hover {
+            background: var(--primary-color);
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            z-index: 1001;
+            width: 30px;
+            height: 25px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(1) {
+            top: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(2) {
+            top: 10px;
+        }
+
+        .mobile-menu-toggle span:nth-child(3) {
+            top: 20px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu ul li:last-child {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu .cta-button {
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Overlay when menu is open */
+        body.menu-open::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
 
         /* Hero Section */
@@ -176,15 +339,93 @@
 
         .hero-image {
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            height: 500px;
+            width: 100%;
         }
 
-        .floating-image {
+        .hero-slideshow {
             width: 100%;
-            max-width: 600px;
-            height: auto;
+            height: 100%;
+            position: relative;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            animation: float 6s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .hero-slideshow img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 6s ease-in-out;
+            object-fit: cover;
+            transform: scale(1.1);
+        }
+
+        .hero-slideshow img.active {
+            opacity: 1;
+            transform: scale(1);
+            animation: kenBurns 10s ease-in-out forwards;
+        }
+
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .slideshow-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .slideshow-nav button {
+            background: rgba(52, 152, 219, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            font-size: 1.2rem;
+        }
+
+        .slideshow-nav button:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .slideshow-nav button {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
         }
 
         /* Features Section */
@@ -331,7 +572,7 @@
             margin: 1rem 0;
             font-size: 1.2rem;
             color: var(--text-color);
-        } 
+        }
 
         /* Call to Action Section */
         .cta-section {
@@ -429,38 +670,139 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding-top: 100px;
+                padding-bottom: 2rem;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .hero-text {
                 text-align: center;
+                order: 1;
             }
 
-            .hero-text h1 {
-                font-size: 2.5rem;
+            .hero-image {
+                order: 2;
+                margin: 0 auto;
+                max-width: 100%;
+                padding: 0 1rem;
+                height: 300px;
+                margin-top: 2rem;
             }
 
-            .hero-text p {
-                margin: 0 auto 2rem auto;
+            .hero-slideshow {
+                max-width: 100%;
+                height: 300px;
+            }
+
+            .hero-slideshow img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                padding: 0;
+            }
+
+            .hero-buttons .cta-button {
+                width: 100%;
+            }
+
+            .section-title {
+                padding: 0 1rem;
+            }
+
+            .features {
+                padding: 4rem 1rem;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .mobile-menu {
+            .mobile-menu-toggle {
                 display: block;
+            }
+            
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+                padding: 0 2rem;
+            }
+            
+            .hero-buttons .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .feature-card {
+                margin-bottom: 1rem;
+            }
+
+            .language-switcher {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                margin: 0;
+                padding: 0.3rem;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .language-switcher button {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .mobile-menu-toggle {
+                margin-left: 1rem;
+            }
+
+            .slideshow-nav {
+                bottom: 10px;
+            }
+            .slideshow-nav button {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
             }
         }
 
         /* Language Switcher */
         .language-switcher {
             position: fixed;
-            top: 100px;
+            top: 20px;
             right: 20px;
-            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             background: white;
             padding: 0.5rem;
             border-radius: 25px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
         }
 
         .language-switcher button {
@@ -470,6 +812,7 @@
             cursor: pointer;
             border-radius: 20px;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .language-switcher button.active {
@@ -477,9 +820,177 @@
             color: white;
         }
 
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: auto;
+                left: 20px;
+            }
+        }
+
         [lang="ar"] {
             font-family: var(--font-arabic);
             direction: rtl;
+        }
+
+        /* Add this to the CSS styles section */
+        .contact-info {
+            unicode-bidi: plaintext;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Smooth scrolling for page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add this to the CSS styles section */
+        .contact-info {
+            unicode-bidi: plaintext;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* Calendar Section Styles */
+        .calendar-section {
+            padding: 5rem 2rem;
+            background: var(--background-light);
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+        
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .calendar-image {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .calendar-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .calendar-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .download-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .download-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-button i {
+            font-size: 1.2rem;
+        }
+        
+        /* Language-specific styling for calendar */
+        html[lang="en"] [data-lang-ar].download-button {
+            display: none;
+        }
+        
+        html[lang="ar"] [data-lang-en].download-button {
+            display: none;
+        }
+        
+        /* RTL support for calendar section */
+        html[lang="ar"] .calendar-section {
+            direction: rtl;
+        }
+        
+        /* Mobile responsiveness for calendar */
+        @media (max-width: 768px) {
+            .calendar-section {
+                padding: 4rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .calendar-image {
+                max-width: 100%;
+            }
+            
+            .download-button {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Icon styling for navigation */
+        .nav-links a:not(.cta-button) i, 
+        .mobile-menu a:not(.cta-button) i {
+            margin-right: 5px;
+            font-size: 0.9em;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        html[lang="ar"] .nav-links a:not(.cta-button) i,
+        html[lang="ar"] .mobile-menu a:not(.cta-button) i {
+            margin-right: 0;
+            margin-left: 5px;
+        }
+        
+        .nav-links a:not(.cta-button):hover i,
+        .mobile-menu a:not(.cta-button):hover i {
+            transform: translateY(-2px);
+        }
+        
+        /* Restore CTA button icon styling */
+        .cta-button i {
+            font-size: 1.1em;
+            margin-top: 1px;
+            color: white;
         }
     </style>
 </head>
@@ -488,150 +999,350 @@
         <nav>
             <a href="index.html" class="logo">
                 <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
-                <span class="logo-text">Jana Academy</span>
             </a>
             <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="team.html">Our Team</a></li>
+                <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en><i class="fas fa-user-plus"></i> Register Now!</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar><i class="fas fa-user-plus"></i> سجل الآن</a></li>
             </ul>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                    <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                    <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                    <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                    <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en>
+                            <i class="fas fa-user-plus"></i> Register Now!
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar>
+                            <i class="fas fa-user-plus"></i> سجل الآن
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
+    <div class="language-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">عربي</button>
+    </div>
+
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-text" data-aos="fade-right">
-                <h1>Welcome to Jana Academy</h1>
-                <div lang="ar">
-                    <h2>أهلاً بكم في أكاديمية جنى</h2>
+            <div class="hero-text" data-aos="fade-right" data-bilingual>
+                <div data-lang-en>
+                    <h1>Welcome to Jana Academy</h1>
+                    <p>A full-time Islamic elementary school in Mississauga offering comprehensive education in English and Arabic, with French language programs. Enrollment for 2024-2025 open soon!</p>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button"><i class="fas fa-user-plus"></i> Register Now!</a>
+                        <a href="about.html" class="cta-button secondary">About Us</a>
+                    </div>
                 </div>
-                <p>Where Islamic values meet academic excellence. Enrollment for 2024-2025 open soon!</p>
-                <div class="cta-buttons">
-                    <a href="about.html" class="cta-button">About us!</a>
+                <div data-lang-ar>
+                    <h1>أهلاً بكم في أكاديمية جنى</h1>
+                    <p>مدرسة إسلامية ابتدائية بدوام كامل في مسيساجا تقدم تعليماً شاملاً باللغتين الإنجليزية والعربية، مع برامج اللغة الفرنسية. التسجيل للعام الدراسي 2024-2025 سيفتح قريباً!</p>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button"><i class="fas fa-user-plus"></i> سجل الآن</a>
+                        <a href="about.html" class="cta-button secondary">اعرف المزيد</a>
+                    </div>
                 </div>
             </div>
             <div class="hero-image" data-aos="fade-left">
-                <img src="arabic.jpg" alt="Happy students learning" class="floating-image">
+                <div class="hero-slideshow">
+                    <img src="facility/facility (1).jpeg" alt="Jana Academy Facility" class="active">
+                    <img src="facility/facility (10).jpeg" alt="Jana Academy Facility">
+                    <img src="janaacademy_gallery/jana1 (31).jpeg" alt="Jana Academy Facility">
+                    <img src="janaacademy_gallery/jana1 (18).jpeg" alt="Jana Academy Activities">
+                    <img src="janaacademy_gallery/jana1 (19).jpeg" alt="Jana Academy Activities">
+                    <div class="slideshow-nav">
+                        <button onclick="prevSlide()" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+                        <button onclick="nextSlide()" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Features Section (Why Choose Jana Academy) -->
     <section class="features">
-      <div class="section-title" data-aos="fade-up">
-          <h2>Why Choose Jana Academy?</h2>
-          <p>Nurturing young minds with Islamic values and academic excellence</p>
+      <div class="section-title" data-aos="fade-up" data-bilingual>
+          <div data-lang-en>
+              <h2>Why Choose Jana Academy?</h2>
+              <p>Nurturing young minds with Islamic values and academic excellence</p>
+          </div>
+          <div data-lang-ar>
+              <h2>لماذا تختار أكاديمية جنى؟</h2>
+              <p>رعاية العقول الشابة بالقيم الإسلامية والتميز الأكاديمي</p>
+          </div>
       </div>
       
       <div class="features-grid">
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-              <img src="creative-learning.jpg" alt="Islamic Education">
-              <h3>Islamic Education</h3>
-              <p>Comprehensive Islamic studies curriculum integrated with modern educational methods.</p>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-bilingual>
+              <img src="janaacademy_gallery/jana1 (26).jpeg" alt="Islamic Education">
+              <div data-lang-en>
+                  <h3>Islamic Education</h3>
+                  <p>Comprehensive Islamic studies curriculum integrated with modern educational methods.</p>
+              </div>
+              <div data-lang-ar>
+                  <h3>التعليم الإسلامي</h3>
+                  <p>منهج شامل للدراسات الإسلامية متكامل مع أساليب التعليم الحديثة.</p>
+              </div>
           </div>
           
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-              <img src="kids-world.jpg" alt="Qualified Teachers">
-              <h3>Expert Teachers</h3>
-              <p>Highly qualified educators with extensive experience in both Islamic and academic education.</p>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-bilingual>
+              <img src="janaacademy_gallery/jana1 (4).jpeg" alt="Qualified Teachers">
+              <div data-lang-en>
+                  <h3>Expert Teachers</h3>
+                  <p>Highly qualified educators with extensive experience in both Islamic and academic education.</p>
+              </div>
+              <div data-lang-ar>
+                  <h3>معلمون خبراء</h3>
+                  <p>مربون مؤهلون تأهيلاً عالياً ذوو خبرة واسعة في التعليم الإسلامي والأكاديمي.</p>
+              </div>
           </div>
           
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-              <img src="arabic.png" alt="Safe Environment">
-              <h3>Safe Environment</h3>
-              <p>State-of-the-art facilities ensuring a secure and nurturing learning environment.</p>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-bilingual>
+              <img src="janaacademy_gallery/jana1 (10).jpeg" alt="Safe Environment">
+              <div data-lang-en>
+                  <h3>Safe Environment</h3>
+                  <p>State-of-the-art facilities ensuring a secure and nurturing learning environment.</p>
+              </div>
+              <div data-lang-ar>
+                  <h3>بيئة آمنة</h3>
+                  <p>مرافق حديثة تضمن بيئة تعليمية آمنة وداعمة.</p>
+              </div>
           </div>
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-            <img src="interactive-play.png" alt="Safe Environment">
-            <h3>Peel Curriculum</h3>
-            <p>We follow the Peel District School Board for English, Math, Social
-              Studies, Physical Education and Art.</p>
-        </div>
-      </div>
-  </section>
-
-  <section id="location" class="location-section">
-    <div class="location-container" data-aos="fade-up">
-        <div class="location-text">
-            <h2>Where Can You Find Us?</h2>
-            <p class="address">15 Pearl St, Mississauga, ON L5M 1X1</p>
-            <p>Offering a welcoming environment for your child's development.</p>
-        </div>
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.2472019996944!2d-79.71603782264629!3d43.580567057123844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b41b938172f2b%3A0xb7f45ae4987f2142!2s15%20Pearl%20St%2C%20Mississauga%2C%20ON%20L5M%201X1!5e0!3m2!1sen!2sca!4v1730060039871!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
-    </div>
-</section>
-
-<section id="contact" class="contact-section">
-    <div class="contact-container" data-aos="fade-up">
-        <h2>Contact Us</h2>
-        <p>We would love to hear from you. Reach out to us for any questions or inquiries:</p>
-        
-        <div class="contact-details">
-            <p>Email: janaacademycanada.gmail.com</p>
-            <p>Phone: 416-771-3722</p>
-        </div>
-    </div>
-</section>
-
-  <footer>
-      <div class="footer-content">
-          <div class="footer-column">
-              <h3>Contact Us</h3>
-              <ul>
-                  <li>Phone: 416-771-3722</li>
-                  <li>Email: janaacademycanada@gmail.com</li>
-                  <li>Address: 15 Pearl St, Mississauga, ON, L5M 1X1</li>
-              </ul>
-          </div>
-
-          <div class="footer-column">
-              <h3>Quick Links</h3>
-              <ul>
-                  <li><a href="#about">About Us</a></li>
-                  <li><a href="#programs">Programs</a></li>
-                  <li><a href="#admissions">Admissions</a></li>
-                  <li><a href="#calendar">Academic Calendar</a></li>
-              </ul>
-          </div>
-
-          <div class="footer-column">
-              <h3>Follow Us</h3>
-              <ul>
-                  <li><a href="#facebook">Facebook</a></li>
-                  <li><a href="#instagram">Instagram</a></li>
-                  <li><a href="#twitter">Twitter</a></li>
-                  <li><a href="#linkedin">LinkedIn</a></li>
-              </ul>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-bilingual>
+              <img src="interactive-play.png" alt="Peel Curriculum">
+              <div data-lang-en>
+                  <h3>Peel Curriculum</h3>
+                  <p>We follow the Peel District School Board for English, Math, Social Studies, Physical Education and Art.</p>
+              </div>
+              <div data-lang-ar>
+                  <h3>منهج بيل</h3>
+                  <p>نتبع مجلس مدارس منطقة بيل للغة الإنجليزية والرياضيات والدراسات الاجتماعية والتربية البدنية والفنون.</p>
+              </div>
           </div>
       </div>
-  </footer>
+    </section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-      AOS.init({
-          duration: 1000,
-          once: true
-      });
+    <!-- Calendar Section Start -->
+    <section id="calendar" class="calendar-section" data-bilingual>
+        <div class="container">
+            <div data-lang-en>
+                <h2 class="section-title" data-aos="fade-up">2024-2025 Academic Calendar</h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="100">Download our academic calendar to stay up to date with all important dates and events.</p>
+            </div>
+            <div data-lang-ar>
+                <h2 class="section-title" data-aos="fade-up">التقويم الأكاديمي 2024-2025</h2>
+                <p class="section-description" data-aos="fade-up" data-aos-delay="100">قم بتنزيل التقويم الأكاديمي للبقاء على اطلاع بجميع التواريخ والأحداث المهمة.</p>
+            </div>
+            
+            <div class="calendar-container" data-aos="fade-up" data-aos-delay="200">
+                <img src="jana-calendar-24-25.jpeg" alt="Jana Academy Calendar 2024-2025" class="calendar-image">
+                <div class="calendar-actions">
+                    <a href="jana-calendar-24-25.jpeg" download class="download-button" data-lang-en>
+                        <i class="fas fa-download"></i> Download Calendar
+                    </a>
+                    <a href="jana-calendar-24-25.jpeg" download class="download-button" data-lang-ar>
+                        <i class="fas fa-download"></i> تنزيل التقويم
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Calendar Section End -->
 
-      // Header scroll effect
-      window.addEventListener('scroll', function() {
-          const header = document.getElementById('header');
-          if (window.scrollY > 50) {
-              header.classList.add('scrolled');
-          } else {
-              header.classList.remove('scrolled');
-          }
-      });
+    <section id="location" class="location-section">
+        <div class="location-container" data-aos="fade-up" data-bilingual>
+            <div class="location-text">
+                <div data-lang-en>
+                    <h2>Where Can You Find Us?</h2>
+                    <p class="address">15 Pearl St, Mississauga, ON L5M 1X1</p>
+                    <p>Offering a welcoming environment for your child's development.</p>
+                </div>
+                <div data-lang-ar>
+                    <h2>أين يمكنك أن تجدنا؟</h2>
+                    <p class="address">15 Pearl St, Mississauga, ON L5M 1X1</p>
+                    <p>نقدم بيئة ترحيبية لتطوير طفلك.</p>
+                </div>
+            </div>
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.2472019996944!2d-79.71603782264629!3d43.580567057123844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b41b938172f2b%3A0xb7f45ae4987f2142!2s15%20Pearl%20St%2C%20Mississauga%2C%20ON%20L5M%201X1!5e0!3m2!1sen!2sca!4v1730060039871!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
+        </div>
+    </section>
 
-      // Language switcher
-      const languageButtons = document.querySelectorAll('.language-switcher button');
-      languageButtons.forEach(button => {
-          button.addEventListener('click', function() {
-              languageButtons.forEach(btn => btn.classList.remove('active'));
-              this.classList.add('active');
-              // Add language switching logic here
-          });
-      });
-  </script>
+    <section id="contact" class="contact-section">
+        <div class="contact-container" data-aos="fade-up" data-bilingual>
+            <div data-lang-en>
+                <h2>Contact Us</h2>
+                <p>We would love to hear from you. Reach out to us for any questions or inquiries:</p>
+                
+                <div class="contact-details">
+                    <p>Email: <span class="contact-info">janaacademycanada@gmail.com</span></p>
+                    <p>Phone: <span class="contact-info">416-771-3722</span></p>
+                </div>
+            </div>
+            <div data-lang-ar>
+                <h2>اتصل بنا</h2>
+                <p>يسعدنا أن نسمع منك. تواصل معنا لأي أسئلة أو استفسارات:</p>
+                
+                <div class="contact-details">
+                    <p>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></p>
+                    <p>الهاتف: <span class="contact-info">416-771-3722</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Phone: <span class="contact-info">416-771-3722</span></li>
+                        <li>Email: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>Address: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li>الهاتف: <span class="contact-info">416-771-3722</span></li>
+                        <li>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>العنوان: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="team.html">فريقنا</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#linkedin">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>تابعنا</h3>
+                    <ul>
+                        <li><a href="#facebook">فيسبوك</a></li>
+                        <li><a href="#instagram">انستغرام</a></li>
+                        <li><a href="#twitter">تويتر</a></li>
+                        <li><a href="#linkedin">لينكد إن</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hero Slideshow
+            const slides = document.querySelectorAll('.hero-slideshow img');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                // Remove active class from all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                    slide.style.opacity = '0';
+                });
+                
+                // Add active class to target slide
+                slides[index].classList.add('active');
+                slides[index].style.opacity = '0';
+                
+                // Force a reflow before changing opacity
+                slides[index].offsetHeight;
+                
+                // Set opacity to 1 to trigger transition
+                slides[index].style.opacity = '1';
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+                resetTimer();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+                resetTimer();
+            }
+
+            function resetTimer() {
+                // Clear the existing interval and start a new one
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 10000);
+            }
+
+            // Initialize first slide and start slideshow
+            if (slides.length > 0) {
+                showSlide(0);
+                slideInterval = setInterval(nextSlide, 10000);
+            }
+
+            // Make functions globally available
+            window.nextSlide = nextSlide;
+            window.prevSlide = prevSlide;
+
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

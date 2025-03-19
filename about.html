@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Jana Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -63,8 +66,13 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 80px;
             width: auto;
+            transition: height 0.3s ease;
+        }
+
+        header.scrolled .logo img {
+            height: 70px;
         }
 
         .logo-text {
@@ -103,165 +111,336 @@
             transform: translateY(-2px);
         }
 
+        .cta-button {
+            background: var(--primary-color);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .cta-button i {
+            font-size: 1.1em;
+            margin-top: 1px;
+        }
+
         /* About Section Styles */
         .about-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
             background: var(--background-gradient);
-            padding: 6rem 2rem;
             text-align: center;
-            padding-top: 10%;
         }
 
         .about-hero h1 {
             font-size: 3rem;
-            color: var(--primary-color);
             margin-bottom: 1.5rem;
-            animation: fadeInUp 0.6s ease;
+            color: var(--text-color);
         }
 
         .about-hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
             max-width: 800px;
             margin: 0 auto;
-            font-size: 1.2rem;
-            color: var(--pr);
-            animation: fadeInUp 0.8s ease;
         }
 
-        .vision-mission {
+        .about-section {
             padding: 5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-container {
             background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        .bilingual-content {
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
+            gap: 4rem;
+            align-items: center;
         }
 
-        [lang="ar"] {
-            font-family: var(--font-arabic);
-            direction: rtl;
-            line-height: 1.8;
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .section-title {
+        .about-text h2 {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .mission-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .mission-list li {
             margin-bottom: 1.5rem;
-            padding-left: 2rem;
-            position: relative;
+            color: var(--text-color);
         }
 
-        .mission-list li::before {
-            content: "•";
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -0.2rem;
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
         }
 
-        [lang="ar"] .mission-list li {
-            padding-left: 0;
-            padding-right: 2rem;
-        }
-
-        [lang="ar"] .mission-list li::before {
-            left: auto;
-            right: 0;
-        }
-
-        /* Values Section */
-        .values-section {
+        .mission-section {
             padding: 5rem 2rem;
             background: var(--background-light);
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
+        .mission-container {
+            max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .value-card {
+        .mission-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
-        .value-card:hover {
-            transform: translateY(-5px);
+        .mission-card:hover {
+            transform: translateY(-10px);
         }
 
-        .value-card h3 {
-            color: var(--primary-color);
+        .mission-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .mission-card p {
+            color: var(--text-light);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            z-index: 1001;
+            width: 30px;
+            height: 25px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(1) {
+            top: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(2) {
+            top: 10px;
+        }
+
+        .mobile-menu-toggle span:nth-child(3) {
+            top: 20px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu .cta-button {
+            width: 100%;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .mobile-menu li:last-child {
+            margin-bottom: 0;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Overlay when menu is open */
+        body.menu-open::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .bilingual-content {
+            .about-container {
                 grid-template-columns: 1fr;
             }
 
+            .about-image {
+                order: -1;
+            }
+
+            .about-hero {
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+            
             .about-hero h1 {
                 font-size: 2.5rem;
             }
-
+            
             .nav-links {
                 display: none;
             }
 
-            .section-container {
-                padding: 2rem;
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .language-switcher {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                margin: 0;
+                padding: 0.3rem;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .language-switcher button {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.85rem;
             }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+        }
+
+        .language-switcher button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-switcher button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: auto;
+                left: 20px;
             }
         }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Add this to the CSS styles section */
+        .contact-info {
+            unicode-bidi: plaintext;
+            direction: ltr;
+            display: inline-block;
         }
     </style>
 </head>
@@ -270,94 +449,223 @@
         <nav>
             <a href="index.html" class="logo">
                 <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
-                <span class="logo-text">Jana Academy</span>
             </a>
             <ul class="nav-links">
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="team.html">Our Team</a></li>
+                <li><a href="index.html" data-lang-en>Home</a></li>
+                <li><a href="about.html" data-lang-en>About Us</a></li>
+                <li><a href="gallery.html" data-lang-en>Gallery</a></li>
+                <li><a href="team.html" data-lang-en>Our Team</a></li>
+                <li><a href="index.html" data-lang-ar>الرئيسية</a></li>
+                <li><a href="about.html" data-lang-ar>من نحن</a></li>
+                <li><a href="gallery.html" data-lang-ar>معرض الصور</a></li>
+                <li><a href="team.html" data-lang-ar>فريقنا</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en><i class="fas fa-user-plus"></i> Register Now!</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar><i class="fas fa-user-plus"></i> سجل الآن</a></li>
             </ul>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="index.html" data-lang-en>Home</a></li>
+                    <li><a href="about.html" data-lang-en>About Us</a></li>
+                    <li><a href="gallery.html" data-lang-en>Gallery</a></li>
+                    <li><a href="team.html" data-lang-en>Our Team</a></li>
+                    <li><a href="index.html" data-lang-ar>الرئيسية</a></li>
+                    <li><a href="about.html" data-lang-ar>من نحن</a></li>
+                    <li><a href="gallery.html" data-lang-ar>معرض الصور</a></li>
+                    <li><a href="team.html" data-lang-ar>فريقنا</a></li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en>
+                            <i class="fas fa-user-plus"></i> Register Now!
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar>
+                            <i class="fas fa-user-plus"></i> سجل الآن
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    
+    <div class="language-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">عربي</button>
+    </div>
+
     <section class="about-hero">
-        <h1>About Jana Academy</h1>
-        <p>Nurturing young minds with Islamic values and academic excellence</p>
+        <div class="container">
+            <div data-lang-en>
+                <h1 data-aos="fade-up">About Jana Academy</h1>
+                <p data-aos="fade-up" data-aos-delay="100">Learn about our mission, values, and commitment to providing exceptional Islamic education.</p>
+            </div>
+            <div data-lang-ar style="display: none;">
+                <h1 data-aos="fade-up">عن أكاديمية جنى</h1>
+                <p data-aos="fade-up" data-aos-delay="100">تعرف على رسالتنا وقيمنا والتزامنا بتقديم تعليم إسلامي استثنائي.</p>
+            </div>
+        </div>
     </section>
-    <section class="values-section">
-      <h2 class="section-title">Our Core Values</h2>
-      <div class="values-grid">
-          <div class="value-card fade-in">
-              <h3>Islamic Identity</h3>
-              <p>Preserving and nurturing Islamic values while embracing modern education</p>
-          </div>
-          <div class="value-card fade-in">
-              <h3>Academic Excellence</h3>
-              <p>Striving for the highest standards in education and personal development</p>
-          </div>
-          <div class="value-card fade-in">
-              <h3>Community Integration</h3>
-              <p>Building bridges between cultural heritage and local community values</p>
-          </div>
-          <div class="value-card fade-in">
-              <h3>Safe Environment</h3>
-              <p>Creating a nurturing space where every child feels secure and valued</p>
-          </div>
-      </div>
-  </section>
-    <section class="vision-mission">
-        <div class="section-container">
-            <h2 class="section-title">Our Vision</h2>
-            <div class="bilingual-content">
-                <div lang="en">
+
+    <!-- English Version -->
+    <div data-lang-en>
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>Our Story</h2>
+                    <p>Jana Academy was founded with a vision to create an educational environment where Islamic values and academic excellence go hand in hand. Our journey began with a small group of dedicated educators who believed in nurturing young minds with both spiritual guidance and modern educational practices.</p>
+                    <p>Today, we are proud to be a leading Islamic preschool in Mississauga, providing a comprehensive curriculum that prepares children for both academic success and a life guided by Islamic principles.</p>
+                    <p>Our dedicated team of educators brings together expertise in early childhood education and deep knowledge of Islamic teachings, creating a unique learning experience for our students.</p>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (4).jpeg" alt="Jana Academy Students">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" style="background: var(--background-light);">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>Our Vision</h2>
                     <p>We aspire for Jana Academy to become a distinguished academic and educational foundation, elevating future generations toward excellence and leadership. Our institution seeks to establish a unique model from which educational bodies worldwide can draw inspiration.</p>
                 </div>
-                <div lang="ar">
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (17).jpeg" alt="Jana Academy Vision">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>Our Mission</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;">• To provide a safe, welcoming, and loving environment that instills a love of science and learning, making school a second home for students.</li>
+                        <li style="margin-bottom: 1rem;">• To implement the finest educational methods that inspire students toward innovation and academic prominence in today's world.</li>
+                        <li style="margin-bottom: 1rem;">• To preserve Islamic identity through the selection of top-quality educational staff.</li>
+                        <li style="margin-bottom: 1rem;">• To foster social partnerships between our diaspora generations and their local communities in harmony with cultural sensitivities.</li>
+                    </ul>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (19).jpeg" alt="Jana Academy Mission">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Arabic Version -->
+    <div data-lang-ar style="display: none;">
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>قصتنا</h2>
+                    <p>تأسست أكاديمية جنى برؤية لخلق بيئة تعليمية تتلاقى فيها القيم الإسلامية مع التميز الأكاديمي. بدأت رحلتنا مع مجموعة صغيرة من المربين المتفانين الذين آمنوا برعاية العقول الشابة بالتوجيه الروحي والممارسات التعليمية الحديثة.</p>
+                    <p>اليوم، نحن فخورون بكوننا مدرسة إسلامية رائدة في ميسيساجا، نقدم منهجًا شاملاً يعد الأطفال للنجاح الأكاديمي وحياة تسترشد بالمبادئ الإسلامية.</p>
+                    <p>يجمع فريقنا المتفاني من المعلمين بين الخبرة في تعليم الطفولة المبكرة والمعرفة العميقة بالتعاليم الإسلامية، مما يخلق تجربة تعليمية فريدة لطلابنا.</p>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (4).jpeg" alt="طلاب أكاديمية جنى">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" style="background: var(--background-light);">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>رؤيتنا</h2>
                     <p>نطمح لأن تكون أكاديمية جنى صرحاً أكاديمياً وتربوياً يرتقي بأجيالنا إلى التميز والريادة ونموذجاً فريداً تستفيد منه المؤسسات التعليمية والتربوية حول العالم</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="section-container">
-            <h2 class="section-title">Our Mission</h2>
-            <div class="bilingual-content">
-                <div lang="en">
-                    <ul class="mission-list">
-                        <li>To provide a safe, welcoming, and loving environment that instills a love of science and learning, making school a second home for students.</li>
-                        <li>To implement the finest educational methods that inspire students toward innovation and academic prominence in today's world.</li>
-                        <li>To preserve Islamic identity through the selection of top-quality educational staff.</li>
-                        <li>To foster social partnerships between our diaspora generations and their local communities in harmony with cultural sensitivities.</li>
-                    </ul>
-                </div>
-                <div lang="ar">
-                    <ul class="mission-list">
-                        <li>توفير بيئة أمنة ومتقبلة حاضنة و ُمحبة تغرس في نفوس الطلبة قيم حب العلم والتعلم تجعل من المدرسة بيتهم الثاني.</li>
-                        <li>تبني أفضل الأساليب التعليمية التي تصل بالطلاب إلى الإبداع والتفوق الأكاديمي المواكب للعصر</li>
-                        <li>الحفاظ على الهوية الإسلامية خلال اختيار أفضل الكوادر التربوية</li>
-                        <li>تحقيق شراكة اجتماعية لأجيالنا في المهجر مع المجتمعات التي يعيشون معها بما ينسجم مع خصوصيات هويتهم الثقافية</li>
-                    </ul>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (17).jpeg" alt="رؤية أكاديمية جنى">
                 </div>
             </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-text" data-aos="fade-right">
+                    <h2>رسالتنا</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem;">• توفير بيئة أمنة ومتقبلة حاضنة و ُمحبة تغرس في نفوس الطلبة قيم حب العلم والتعلم تجعل من المدرسة بيتهم الثاني.</li>
+                        <li style="margin-bottom: 1rem;">• تبني أفضل الأساليب التعليمية التي تصل بالطلاب إلى الإبداع والتفوق الأكاديمي المواكب للعصر</li>
+                        <li style="margin-bottom: 1rem;">• الحفاظ على الهوية الإسلامية خلال اختيار أفضل الكوادر التربوية</li>
+                        <li style="margin-bottom: 1rem;">• تحقيق شراكة اجتماعية لأجيالنا في المهجر مع المجتمعات التي يعيشون معها بما ينسجم مع خصوصيات هويتهم الثقافية</li>
+                    </ul>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="janaacademy_gallery/jana1 (19).jpeg" alt="رسالة أكاديمية جنى">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Phone: <span class="contact-info">416-771-3722</span></li>
+                        <li>Email: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>Address: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li>الهاتف: <span class="contact-info">416-771-3722</span></li>
+                        <li>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>العنوان: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="team.html">فريقنا</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#linkedin">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>تابعنا</h3>
+                    <ul>
+                        <li><a href="#facebook">فيسبوك</a></li>
+                        <li><a href="#instagram">انستغرام</a></li>
+                        <li><a href="#twitter">تويتر</a></li>
+                        <li><a href="#linkedin">لينكد إن</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </section>
-    <script>
-        // Simple animation for fade-in elements
-        const observerOptions = {
-            threshold: 0.1
-        };
+    </footer>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

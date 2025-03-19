@@ -6,6 +6,8 @@
     <title>Our Team - Jana Academy</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         :root {
             --primary-color: #3498db;
@@ -64,8 +66,13 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 80px;
             width: auto;
+            transition: height 0.3s ease;
+        }
+
+        header.scrolled .logo img {
+            height: 70px;
         }
 
         .logo-text {
@@ -87,205 +94,820 @@
             transition: color 0.3s ease;
         }
 
-        /* Team page specific styles */
-        .team-hero {
-            background: var(--background-gradient);
-            padding: 4rem 2rem;
+        .cta-button {
+            background: var(--primary-color);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-width: 160px;
             text-align: center;
-            padding-top: 10%;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .cta-button i {
+            font-size: 1.1em;
+            margin-top: 1px;
+        }
+
+        /* Page-specific styles */
+        .team-hero {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: var(--background-gradient);
+            text-align: center;
         }
 
         .team-hero h1 {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            color: var(--text-color);
         }
 
         .team-hero p {
-            color: var(--text-color);
-            max-width: 600px;
-            margin: 0 auto;
             font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-section {
+            padding: 6rem 2rem;
+            background: var(--background-light);
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .team-container > p {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
         }
 
         .team-grid {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--background-light);
+        }
+
+        .team-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .team-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .team-card ul li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .team-member {
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
 
         .team-member:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
 
-        .member-image {
+        .team-member-image {
             width: 100%;
             height: 300px;
             overflow: hidden;
         }
 
-        .member-image img {
+        .team-member-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
-        .team-member:hover .member-image img {
+        .team-member:hover .team-member-image img {
             transform: scale(1.05);
         }
 
-        .member-info {
+        .team-member-info {
             padding: 1.5rem;
+            text-align: center;
         }
 
-        .member-info h2 {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .member-info h3 {
+        .team-member-info p {
             color: var(--text-light);
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .member-info p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
         }
 
-        .credentials {
-            margin-top: 1rem;
-            padding: 1rem;
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background: var(--background-light);
-            border-radius: 8px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
 
-        .credentials h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
         }
 
-        .credentials ul {
+        .join-team {
+            margin-top: 5rem;
+            padding: 3rem;
+            background: var(--background-light);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .join-team h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .join-team p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            z-index: 1001;
+            width: 30px;
+            height: 25px;
+            position: relative;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(1) {
+            top: 0;
+        }
+
+        .mobile-menu-toggle span:nth-child(2) {
+            top: 10px;
+        }
+
+        .mobile-menu-toggle span:nth-child(3) {
+            top: 20px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 10px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 10px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
             list-style: none;
-            font-size: 0.9rem;
         }
 
-        /* Responsive Design */
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Overlay when menu is open */
+        body.menu-open::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
         @media (max-width: 768px) {
+            .team-hero {
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+            
             .team-hero h1 {
                 font-size: 2.5rem;
             }
-            
+
             .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-                padding: 0 1rem;
+                grid-template-columns: 1fr;
             }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .language-switcher {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                margin: 0;
+                padding: 0.3rem;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .language-switcher button {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .team-card {
+                margin: 0 1rem;
+            }
+
+            .team-section {
+                padding: 4rem 1rem;
+            }
+
+            .team-card-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+        }
+
+        .language-switcher button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .language-switcher button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: auto;
+                left: 20px;
+            }
+        }
+
+        /* Add this to the CSS styles section */
+        .contact-info {
+            unicode-bidi: plaintext;
+            direction: ltr;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-  <header id="header">
-    <nav>
-        <a href="index.html" class="logo">
-          <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
-          <span class="logo-text">Jana Academy</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="team.html">Our Team</a></li>
-        </ul>
-    </nav>
-</header>
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en><i class="fas fa-user-plus"></i> Register Now!</a></li>
+                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar><i class="fas fa-user-plus"></i> سجل الآن</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <ul>
+                    <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
+                    <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                    <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
+                    <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
+                    <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
+                    <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en>
+                            <i class="fas fa-user-plus"></i> Register Now!
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar>
+                            <i class="fas fa-user-plus"></i> سجل الآن
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-
+    <div class="language-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="ar">عربي</button>
+    </div>
 
     <section class="team-hero">
-        <h1>Meet Our Team</h1>
-        <p>Dedicated educators shaping the future of our students</p>
+        <div class="container" data-bilingual>
+            <div data-lang-en>
+                <h1 data-aos="fade-up">Our Team</h1>
+                <p data-aos="fade-up" data-aos-delay="100">Meet the dedicated educators and staff who make Jana Academy a special place for learning.</p>
+            </div>
+            <div data-lang-ar>
+                <h1 data-aos="fade-up">فريقنا</h1>
+                <p data-aos="fade-up" data-aos-delay="100">تعرف على المعلمين والموظفين المتفانين الذين يجعلون من أكاديمية جنى مكانًا مميزًا للتعلم.</p>
+            </div>
+        </div>
     </section>
 
-    <div class="team-grid">
-        <!-- Sarah Ahmad -->
-        <div class="team-member" data-aos="fade-up">
-            <div class="member-image">
-                <img src="/api/placeholder/400/500" alt="Jana Nawras Taifour">
-            </div>
-            <div class="member-info">
-                <h2>Jana Nawras Taifour</h2>
-                <h3>Curriculum Manager, Vice Prinicpal and English Teacher (Grades 2-3)</h3>
-                <p>With over 15 years of experience in Islamic education, Jana is passionate about a hands on learning approach, active learning and skill based development. </p>
-                <div class="credentials">
-                    <h4>Credentials</h4>
-                    <ul>
-                        <li>Masters of Education, UofT Graduate</li>
-                        <li>Bachelors of English from Abu Dhabi University</li>
-                    </ul>
+    <section class="team-section">
+        <div class="team-container" data-bilingual>
+            <div class="team-grid">
+                <!-- Principal -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="teachers/randa.jpeg" alt="Mrs. Randah Hourani">
+                        </div>
+                        <h3>Mrs. Randah Hourani</h3>
+                        <h4>Principal</h4>
+                        <ul>
+                            <li>Education and family counsellor</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="teachers/randa.jpeg" alt="السيدة رندة حوراني">
+                        </div>
+                        <h3>السيدة رندة حوراني</h3>
+                        <h4>المديرة</h4>
+                        <ul>
+                            <li>مستشارة تعليمية وأسرية</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Mohammad Hassan -->
-        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
-            <div class="member-image">
-                <img src="/api/placeholder/400/500" alt="Randah Hourani">
-            </div>
-            <div class="member-info">
-                <h2>Randah Hourani</h2>
-                <h3>Prinicpal</h3>
-                <p>Education and family counsellor.</p>
-                <div class="credentials">
-                    <h4>Credentials</h4>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                <!-- Vice Principal -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Jana Nawras Taifour">
+                        </div>
+                        <h3>Mrs. Jana Nawras Taifour</h3>
+                        <h4>Curriculum Manager, Vice Principal and English Teacher (Grades 2-3)</h4>
+                        <ul>
+                            <li>Masters of Education | University of Toronto</li>
+                            <li>Bachelors of English | Abu Dhabi University</li>
+                            <li>Over 15 years of experience in Islamic education</li>
+                            <li>Specializes in hands-on learning approach, active learning and skill-based development</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة جنى نورس طيفور">
+                        </div>
+                        <h3>السيدة جنى نورس طيفور</h3>
+                        <h4>مديرة المناهج، نائبة المديرة ومدرسة اللغة الإنجليزية (الصفوف 2-3)</h4>
+                        <ul>
+                            <li>ماجستير في التربية | جامعة تورونتو</li>
+                            <li>بكالوريوس في اللغة الإنجليزية | جامعة أبوظبي</li>
+                            <li>خبرة تزيد عن 15 عاماً في التعليم الإسلامي</li>
+                            <li>متخصصة في نهج التعلم العملي، التعلم النشط وتطوير المهارات</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Aisha Rahman -->
-        <!-- <div class="team-member" data-aos="fade-up" data-aos-delay="200">
-            <div class="member-image">
-                <img src="/api/placeholder/400/500" alt="Aisha Rahman">
+                <!-- Teacher 1 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Shahd Tenbakji">
+                        </div>
+                        <h3>Mrs. Shahd Tenbakji</h3>
+                        <h4>Classroom Arabic and English Assistant Teacher</h4>
+                        <ul>
+                            <li>Montessori Training and Early Childhood Assistant Program</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة شهد طنبكجي">
+                        </div>
+                        <h3>السيدة شهد طنبكجي</h3>
+                        <h4>مساعدة مدرسة اللغتين العربية والإنجليزية</h4>
+                        <ul>
+                            <li>تدريب مونتيسوري وبرنامج مساعد الطفولة المبكرة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 2 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Mais Bakkar">
+                        </div>
+                        <h3>Mrs. Mais Bakkar</h3>
+                        <h4>Elementary English Teacher</h4>
+                        <ul>
+                            <li>Bachelor of Arts and English Literature | Damascus University (2010)</li>
+                            <li>Diploma in INLPTA (International NLP Trainers Association) (2006)</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة ميس بكار">
+                        </div>
+                        <h3>السيدة ميس بكار</h3>
+                        <h4>مدرسة اللغة الإنجليزية للمرحلة الابتدائية</h4>
+                        <ul>
+                            <li>بكالوريوس آداب ولغة إنجليزية | جامعة دمشق (2010)</li>
+                            <li>دبلوم في INLPTA (الجمعية الدولية لمدربي البرمجة اللغوية العصبية) (2006)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 3 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="teachers/saheer.jpeg" alt="Mrs. Soheir Al Hasan">
+                        </div>
+                        <h3>Mrs. Soheir Al Hasan</h3>
+                        <h4>Elementary Arabic Teacher</h4>
+                        <ul>
+                            <li>General Arts and Science | George Brown College</li>
+                            <li>Social-Emotional Development in the Early Years | University of Toronto</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="teachers/saheer.jpeg" alt="السيدة سهير الحسن">
+                        </div>
+                        <h3>السيدة سهير الحسن</h3>
+                        <h4>مدرسة اللغة العربية للمرحلة الابتدائية</h4>
+                        <ul>
+                            <li>الفنون والعلوم العامة | كلية جورج براون</li>
+                            <li>التطور الاجتماعي والعاطفي في السنوات المبكرة | جامعة تورونتو</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 4 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Faten Allaham">
+                        </div>
+                        <h3>Mrs. Faten Allaham</h3>
+                        <h4>Kindergarten and Elementary French Teacher</h4>
+                        <ul>
+                            <li>Bachelor of Arts in French</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة فاتن اللحام">
+                        </div>
+                        <h3>السيدة فاتن اللحام</h3>
+                        <h4>مدرسة اللغة الفرنسية لرياض الأطفال والمرحلة الابتدائية</h4>
+                        <ul>
+                            <li>بكالوريوس في اللغة الفرنسية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 5 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Dania Hilal">
+                        </div>
+                        <h3>Mrs. Dania Hilal</h3>
+                        <h4>Kindergarten English Teacher</h4>
+                        <ul>
+                            <li>Bachelor of Arts in English</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة دانيا هلال">
+                        </div>
+                        <h3>السيدة دانيا هلال</h3>
+                        <h4>مدرسة اللغة الإنجليزية لرياض الأطفال</h4>
+                        <ul>
+                            <li>بكالوريوس في اللغة الإنجليزية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 6 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Hala Al Douri">
+                        </div>
+                        <h3>Mrs. Hala Al Douri</h3>
+                        <h4>Preschool English Teacher</h4>
+                        <ul>
+                            <li>Bachelor of Arts in English</li>
+                            <li>Early Childhood Assistant (ECA)</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة هالة الدوري">
+                        </div>
+                        <h3>السيدة هالة الدوري</h3>
+                        <h4>مدرسة اللغة الإنجليزية للحضانة</h4>
+                        <ul>
+                            <li>بكالوريوس في اللغة الإنجليزية</li>
+                            <li>مساعدة الطفولة المبكرة (ECA)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 7 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="teachers/aia.jpeg" alt="Mrs. Aia Al Jabi">
+                        </div>
+                        <h3>Mrs. Aia Al Jabi</h3>
+                        <h4>Homeroom Preschool Arabic Teacher</h4>
+                        <ul>
+                            <li>5+ years of Arabic teaching experience with different age groups</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="teachers/aia.jpeg" alt="السيدة آية الجابي">
+                        </div>
+                        <h3>السيدة آية الحابي</h3>
+                        <h4>معلمة الصف للغة العربية في الحضانة</h4>
+                        <ul>
+                            <li>خبرة أكثر من 5 سنوات في تدريس اللغة العربية لمختلف الفئات العمرية</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teacher 8 -->
+                <div class="team-card" data-aos="fade-up" data-bilingual>
+                    <div data-lang-en>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="Mrs. Reem Shehab">
+                        </div>
+                        <h3>Mrs. Reem Shehab</h3>
+                        <h4>Kindergarten Arabic Teacher</h4>
+                        <ul>
+                            <li>Noorania Ijaza | Alfurqan Academy</li>
+                        </ul>
+                    </div>
+                    <div data-lang-ar>
+                        <div class="team-card-image">
+                            <img src="placeholder-teacher.jpg" alt="السيدة ريم شهاب">
+                        </div>
+                        <h3>السيدة ريم شهاب</h3>
+                        <h4>مدرسة اللغة العربية لرياض الأطفال</h4>
+                        <ul>
+                            <li>إجازة النورانية | أكاديمية الفرقان</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="member-info">
-                <h2>Aisha Rahman</h2>
-                <h3>Early Years Education Specialist</h3>
-                <p>Aisha specializes in early childhood Islamic education, creating engaging and age-appropriate learning experiences for our youngest students.</p>
-                <div class="credentials">
-                    <h4>Credentials</h4>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Contact Us</h3>
                     <ul>
-                        <li>BSc in Early Childhood Education</li>
-                        <li>Islamic Studies Diploma</li>
+                        <li>Phone: <span class="contact-info">416-771-3722</span></li>
+                        <li>Email: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>Address: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li>الهاتف: <span class="contact-info">416-771-3722</span></li>
+                        <li>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></li>
+                        <li>العنوان: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="team.html">فريقنا</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column" data-bilingual>
+                <div data-lang-en>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#linkedin">LinkedIn</a></li>
+                    </ul>
+                </div>
+                <div data-lang-ar>
+                    <h3>تابعنا</h3>
+                    <ul>
+                        <li><a href="#facebook">فيسبوك</a></li>
+                        <li><a href="#instagram">انستغرام</a></li>
+                        <li><a href="#twitter">تويتر</a></li>
+                        <li><a href="#linkedin">لينكد إن</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div> -->
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
