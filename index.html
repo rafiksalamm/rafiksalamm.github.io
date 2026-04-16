@@ -1,1348 +1,3753 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jana Academy - Islamic Preschool Excellence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Jana Academy - Boxed Professional Layout</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --accent-color: #e74c3c;
-            --success-color: #27ae60;
-            --text-color: #2c3e50;
-            --text-light: #7f8c8d;
-            --background-light: #f9f9f9;
-            --background-gradient: linear-gradient(135deg, #f6f9fc 0%, #edf3f8 100%);
-            --font-arabic: 'Noto Sans Arabic', 'Traditional Arabic', system-ui;
-            --font-english: 'Poppins', Arial, sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --brand-blue: #1f4c78;
+            --accent-blue: #1f4c78;
+            --white: #ffffff;
+            --page-bg: #eaeff2;
+            /* Light grey/blue for the page background */
+            --light-border: #c0d1e3;
+            /* Light blue border for boxes */
         }
 
         body {
-            font-family: var(--font-english);
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
+            background-color: var(--page-bg);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Header Styles */
-        header {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
+        /* --- Master Container Styling --- */
+        .site-container {
+            background-color: var(--white);
+
+            margin-bottom: 30px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        header.scrolled {
-            background: white;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        /* --- Header Styling --- */
+        .header-area {
+            background-color: transparent;
+            padding: 10px 20px;
         }
 
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .navbar-brand img {
+            max-height: 98px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 80px;
-            width: auto;
-            transition: height 0.3s ease;
-        }
-
-        /* When header is scrolled, slightly reduce the logo size */
-        header.scrolled .logo img {
-            height: 70px;
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
+        .navbar-nav .nav-link {
+            color: #0c5385 !important;
+            font-size: 15px;
             font-weight: 700;
-            color: var(--primary-color);
+            text-transform: capitalize;
+            padding: 8px 10px !important;
         }
 
-        .nav-links {
+        .nav-cta {
+            border: 2px solid #0c5385;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-size: 15px !important;
+        }
+
+        /* --- Section 1: Welcome --- */
+        .welcome-section {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
+            background: linear-gradient(to right, var(--white) 50%, var(--brand-blue) 50%);
+            min-height: 70vh;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: var(--primary-color);
-            color: white !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            min-width: 160px;
-            text-align: center;
-        }
-
-        .cta-button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-            color: white !important;
-        }
-
-        .cta-button i {
-            font-size: 1.1em;
-            margin-top: 1px;
-        }
-
-        .hero-buttons {
+        .welcome-left {
+            width: 50%;
             display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            align-items: center;
-        }
-
-        .hero-buttons .cta-button {
-            min-width: 200px;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-        }
-
-        .hero-buttons .cta-button.secondary {
-            background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color) !important;
-        }
-
-        .hero-buttons .cta-button.secondary:hover {
-            background: var(--primary-color);
-            color: white !important;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-color);
-            z-index: 1001;
-            width: 30px;
-            height: 25px;
-            position: relative;
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-            position: absolute;
-            left: 0;
-        }
-
-        .mobile-menu-toggle span:nth-child(1) {
-            top: 0;
-        }
-
-        .mobile-menu-toggle span:nth-child(2) {
-            top: 10px;
-        }
-
-        .mobile-menu-toggle span:nth-child(3) {
-            top: 20px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 10px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg);
-            top: 10px;
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: white;
-            padding: 5rem 2rem 2rem;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-        }
-
-        .mobile-menu ul li {
-            margin-bottom: 1.5rem;
-        }
-
-        .mobile-menu ul li:last-child {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-menu .cta-button {
-            width: 100%;
-            justify-content: center;
-            margin-top: 0.5rem;
-        }
-
-        .mobile-menu a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            font-weight: 500;
-            display: block;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary-color);
-        }
-
-        body.menu-open {
+            flex-direction: column;
+            justify-content: space-between;
             overflow: hidden;
-        }
-
-        /* Overlay when menu is open */
-        body.menu-open::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 80px;
-            min-height: 100vh;
-            background: var(--background-gradient);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('pattern.svg') repeat;
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
         }
 
         .hero-text {
-            position: relative;
-            z-index: 2;
+            text-align: center;
+            color: var(--brand-blue);
+            padding-top: 184px;
+            padding-bottom: 100px;
+        }
+
+        .hero-text img.large-logo {
+            width: 150px;
+            max-width: 250px;
+            padding-bottom: 30px;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
+            font-weight: 800;
+            font-size: 70px !important;
+            line-height: 1.1;
         }
 
         .hero-text p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            max-width: 600px;
+             letter-spacing: 22px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-top: 15px;
         }
 
-        .hero-image {
+        .news-carousel-bar {
+            background-color: var(--brand-blue);
+            color: white;
             position: relative;
+            min-height: 160px;
+            margin-right: -4px;
+            z-index: 5;
+        }
+
+        .new-tag {
+            position: absolute;
+            top: -28px;
+            left: 0;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 5px 25px;
+            font-weight: 700;
+            font-style: italic;
+            border-radius: 0 10px 0 0;
+        }
+
+        .carousel-item {
+            padding: 35px 50px;
+            text-align: center;
+        }
+
+        .carousel-item p {
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .welcome-right {
+            width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            height: 500px;
-            width: 100%;
+            position: relative;
         }
 
-        .hero-slideshow {
+        .blob-frame {
+            width: 80%;
+            height: 70%;
+            position: relative;
+        }
+
+        .blob-frame img {
             width: 100%;
             height: 100%;
-            position: relative;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .hero-slideshow img {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out, transform 6s ease-in-out;
             object-fit: cover;
-            transform: scale(1.1);
-        }
-
-        .hero-slideshow img.active {
-            opacity: 1;
-            transform: scale(1);
-            animation: kenBurns 10s ease-in-out forwards;
-        }
-
-        @keyframes kenBurns {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .slideshow-nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            pointer-events: none;
-        }
-
-        .slideshow-nav button {
-            background: rgba(52, 152, 219, 0.8);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            pointer-events: auto;
-            font-size: 1.2rem;
-        }
-
-        .slideshow-nav button:hover {
-            background: var(--primary-color);
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-            .slideshow-nav button {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            font-size: 1.2rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .feature-card p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .location-section {
-            padding: 6rem 2rem;
-            background: var(--background-light);
-        }
-
-        .location-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .location-text {
-            padding-right: 2rem;
-        }
-
-        .location-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .address {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            display: block;
-            margin-bottom: 1.5rem;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Contact Section Styles */
-        .contact-section {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-details {
-            margin: 2rem 0;
-            padding: 2rem;
-            background: var(--background-light);
-            border-radius: 15px;
-            display: inline-block;
-        }
-
-        .contact-details p {
-            margin: 1rem 0;
-            font-size: 1.2rem;
-            color: var(--text-color);
-        }
-
-        /* Call to Action Section */
-        .cta-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .secondary-button {
-            background: white;
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .secondary-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-color);
-            color: white;
-            padding: 4rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-column a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            opacity: 1;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero {
-                min-height: auto;
-                padding-top: 100px;
-                padding-bottom: 2rem;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-            }
-
-            .hero-text {
-                text-align: center;
-                order: 1;
-            }
-
-            .hero-image {
-                order: 2;
-                margin: 0 auto;
-                max-width: 100%;
-                padding: 0 1rem;
-                height: 300px;
-                margin-top: 2rem;
-            }
-
-            .hero-slideshow {
-                max-width: 100%;
-                height: 300px;
-            }
-
-            .hero-slideshow img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 1rem;
-                padding: 0;
-            }
-
-            .hero-buttons .cta-button {
-                width: 100%;
-            }
-
-            .section-title {
-                padding: 0 1rem;
-            }
-
-            .features {
-                padding: 4rem 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
             
-            .location-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 1rem;
-                padding: 0 2rem;
-            }
-            
-            .hero-buttons .cta-button {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .feature-card {
-                margin-bottom: 1rem;
-            }
-
-            .language-switcher {
-                position: fixed;
-                bottom: 20px;
-                left: 20px;
-                margin: 0;
-                padding: 0.3rem;
-                background: rgba(255, 255, 255, 0.95);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .language-switcher button {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.85rem;
-            }
-
-            .mobile-menu-toggle {
-                margin-left: 1rem;
-            }
-
-            .slideshow-nav {
-                bottom: 10px;
-            }
-            .slideshow-nav button {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.9rem;
-            }
         }
 
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        /* --- Section 2: Our Story --- */
+        .story-section {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            padding: 0.5rem;
-            border-radius: 25px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1002;
+            background: linear-gradient(to right, var(--brand-blue) 50%, var(--white) 50%);
+            min-height: 60vh;
         }
 
-        .language-switcher button {
-            padding: 0.5rem 1rem;
-            border: none;
-            background: none;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .language-switcher button.active {
-            background: var(--primary-color);
+        .story-left {
+            width: 50%;
             color: white;
-        }
-
-        @media (max-width: 768px) {
-            .language-switcher {
-                top: auto;
-                bottom: 20px;
-                right: auto;
-                left: 20px;
-            }
-        }
-
-        [lang="ar"] {
-            font-family: var(--font-arabic);
-            direction: rtl;
-        }
-
-        /* Add this to the CSS styles section */
-        .contact-info {
-            unicode-bidi: plaintext;
-            direction: ltr;
-            display: inline-block;
-        }
-
-        /* Smooth scrolling for page */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Add this to the CSS styles section */
-        .contact-info {
-            unicode-bidi: plaintext;
-            direction: ltr;
-            display: inline-block;
-        }
-
-        /* Calendar Section Styles */
-        .calendar-section {
-            padding: 5rem 2rem;
-            background: var(--background-light);
             text-align: center;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-description {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto 3rem auto;
-        }
-        
-        .calendar-container {
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
         }
-        
-        .calendar-image {
-            width: 100%;
-            max-width: 1000px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .story-icon {
+            width: 90px;
+            margin-bottom: 20px;
         }
-        
-        .calendar-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+
+        .story-left h2 {
+            font-weight: 800;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
         }
-        
-        .calendar-actions {
+
+        .story-left p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            max-width: 500px;
+            text-align: justify !important;
+        }
+
+        .story-right {
+            width: 50%;
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .story-oval {
+            width: 93%;
+            margin-top: 82px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            overflow: hidden;
+  
+        }
+
+        .story-oval img {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- Section 3: Elementary School --- */
+        .elementary-section {
+            padding: 80px 60px;
+            background-color: var(--white);
+            color: var(--brand-blue);
+        }
+
+        .elementary-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .elementary-header h2 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .elementary-header p {
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .program-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 30px;
+        }
+
+        .program-img-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        
+        }
+
+        .program-img-circle img {
+            width: 113%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .program-box {
+            border: 1.5px solid var(--light-border);
+            padding: 25px 40px;
+            border-radius: 4px;
+            flex-grow: 1;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .program-box h4 {
+            font-weight: 800;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--brand-blue);
+        }
+
+        .program-box p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+            color: var(--brand-blue);
+        }
+
+        /* --- Section 4: Mission & Vision (NEW) --- */
+        .mission-vision-section {
+            display: flex;
+            background: linear-gradient(to right, var(--white) 50%, var(--brand-blue) 50%);
+            min-height: 70vh;
+        }
+
+        .mission-left {
+            width: 50%;
+            background-color: var(--white);
+            padding: 60px 80px;
+            color: var(--brand-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mission-left h2 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .mission-left p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        .cartoon-children {
+            width: 250px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mission-right {
+            width: 50%;
+            background-color: var(--brand-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .mission-blob {
+            width: 90%;
+            height: 80%;
+          
+            overflow: hidden;
+            
+        }
+
+        .mission-blob img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Responsive View --- */
+        @media (max-width: 991px) {
+
+            .welcome-section,
+            .story-section,
+            .mission-vision-section {
+                flex-direction: column;
+                background: white;
+            }
+
+            .welcome-left,
+            .welcome-right,
+            .story-left,
+            .story-right,
+            .mission-left,
+            .mission-right {
+                width: 100%;
+            }
+
+            .welcome-left {
+                padding-right: 0px;
+            }
+
+            .news-carousel-bar {
+                margin-right: 0;
+                margin-top: 50px;
+            }
+
+            .welcome-right,
+            .mission-right {
+                padding: 60px 0;
+                background-color: var(--brand-blue);
+            }
+
+            .story-left {
+                background-color: var(--brand-blue);
+                padding: 60px 20px;
+            }
+
+            .story-right {
+                background-color: white;
+            }
+
+            .elementary-section {
+                padding: 50px 20px;
+            }
+
+            .program-row {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .program-img-circle {
+                margin-bottom: 10px;
+            }
+
+            .mission-left {
+                padding: 60px 20px;
+            }
+
+            .nav-cta {
+                border: none;
+                background: rgba(255, 255, 255, 0.1);
+                margin-top: 5px;
+            }
+
+            .site-container {
+                margin-top: 0;
+                border-radius: 0;
+            }
+            .hero-text h1
+            {
+                font-size: 40px !important ;
+            }
+            .hero-text p
+            {
+                letter-spacing: 19px !important;
+            }
+        }
+
+        /* --- Values & Directors Section Styling --- */
+        .values-directors-section {
+            display: flex;
+            min-height: 80vh;
+            background: linear-gradient(to right, #1f4c78 50%, #ffffff 50%);
+        }
+
+        /* Left Column */
+        .vd-left {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .blob-frame {
+            width: 85%;
+            height: 80%;
+            overflow: hidden;
+            /* Irregular blob shape matching the image */
+           
+
+        }
+
+     .blob-frame img {
+    width: 102%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        /* Right Column */
+        .vd-right {
+            width: 50%;
+            background-color: #ffffff;
+            color: #1f4c78;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-padding {
+            padding: 60px 50px;
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .faith-header {
+            font-weight: 800;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        .faith-list {
+            list-style: none;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .faith-list li {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Directors Layout */
+        .directors-flex {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .director-card {
+            flex: 1;
+            text-align: center;
+            max-width: 280px;
         }
         
-        .download-button {
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
+        .director-img-circle {
+            margin: auto;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            
+        
+          
+        }
+
+        .director-img-circle img {
+            width: 90%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .director-name {
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        
+        }
+
+        .director-role {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: #1f4c78;
+        }
+
+        .director-sub {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .director-creds {
+            font-size: 0.65rem;
+            line-height: 1.4;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+            .values-directors-section {
+                flex-direction: column;
+                background: #ffffff;
+            }
+
+            .vd-left,
+            .vd-right {
+                width: 100%;
+            }
+
+            .vd-left {
+                background-color: #1f4c78;
+                padding: 60px 20px;
+            }
+
+            .directors-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-padding {
+                padding: 40px 20px;
+            }
+        }
+
+        /* --- Why Choose Section Styling --- */
+        .why-choose-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            color: #1f4c78;
+            /* Navy Blue color from the image */
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .why-choose-section .main-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .feature-title {
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            min-height: 50px;
+            /* Keeps titles aligned */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* The horizontal blue line under the titles */
+        .blue-line {
+            width: 100%;
+            height: 3px;
+            background-color: #1f4c78;
+            margin: 0 auto 20px auto;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: justify;
+            /* Text is left-aligned in the boxes */
+        }
+
+        .feature-image img {
+            max-width: 280px;
+            height: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 767px) {
+            .why-choose-section {
+                padding: 50px 20px;
+            }
+
+            .why-choose-section .main-title {
+                font-size: 1.8rem;
+            }
+
+            .feature-title {
+                min-height: auto;
+            }
+        }
+
+        /* --- Tuition & Fees Section Styling --- */
+        .tuition-section {
+            background-color: #1f4c78;
+            /* Matching the brand blue background */
+            padding: 80px 0;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-main-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .sub-table-title {
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        /* Custom Table Styling */
+        .custom-fees-table {
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 0;
+        }
+
+        .custom-fees-table thead th {
+            background-color: transparent;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+            padding: 15px;
+            font-weight: 700;
+        }
+
+        .custom-fees-table tbody td {
+            background-color: transparent;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 20px;
+            vertical-align: middle;
+        }
+
+        .custom-fees-table th:last-child,
+        .custom-fees-table td:last-child {
+            border-right: none;
+        }
+
+        /* Specific styling for smaller tables */
+        .small-text-table tbody td {
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .small-text-table tbody td:first-child {
+            font-weight: 700;
+        }
+
+        /* Links inside tables */
+        .table-link {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .story-left img{
+            margin: 0px;
+        }
+
+        .table-link:hover {
+            color: #c0d1e3;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 991px) {
+            .section-main-title {
+                font-size: 2rem;
+            }
+
+            .sub-table-title {
+                font-size: 1.5rem;
+                margin-top: 20px;
+            }
+
+            .custom-fees-table thead th,
+            .custom-fees-table tbody td {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* --- Reviews Section Styling --- */
+        .reviews-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            color: #1f4c78;
+            /* Primary Blue */
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+        }
+
+        /* Background/Center Stars decorative element */
+        .stars-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .stars-overlay span {
+            font-size: 80px;
+            color: #1f4c78;
+        }
+
+        /* Review Items */
+        .review-item {
+            position: relative;
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+
+        .quote-icon {
+          
+            width: 22px;
+            height: 15px;
+         
+            /* Light blue quote color */
+            line-height: 1;
+            display: block;
+            margin-bottom: 10px;
+        
+            font-family: Georgia, serif;
+        }
+         .quote-icon-ar
+         {
+         
+            width: 22px;
+            height: 15px;
+            
+            /* Light blue quote color */
+            line-height: 1;
+            display: block;
+           
+         margin-bottom: 10px;
+            font-family: Georgia, serif;
+         }
+        .review-item p {
+            font-size: 0.85rem;
+            line-height: 1.6;
             font-weight: 600;
+            margin: 0;
+        }
+
+        /* Arabic Specific Adjustments */
+        .arabic-column .review-item p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .arabic-column .quote-icon {
+            transform: scaleX(-1);
+            /* Flips quotes for RTL look */
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+            .reviews-section {
+                padding: 60px 20px;
+            }
+
+            .reviews-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .stars-overlay {
+                display: none;
+                /* Hide stars on mobile for readability */
+            }
+        }
+
+        /* Section Layout */
+        .book-tour-section {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ffffff 50%, #1f4c78 50%);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tour-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Side */
+        .tour-left {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .tour-blob-frame {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Irregular blob shape matching your design */
+          
+        }
+
+        .tour-blob-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Right Side (Form) */
+        .tour-right {
+            width: 50%;
+            background-color: #4982b0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-main-title {
+            color: white;
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Form Elements Styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            background-color: white;
+            font-size: 0.9rem;
+            color: #1f4c78;
+            outline: none;
+        }
+
+        .form-group textarea {
+            border-radius: 20px;
+            resize: none;
+        }
+
+        /* Select arrow custom styling */
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f4c78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 15px;
+        }
+
+        /* Submit Button */
+        .btn-book-submit {
+            background-color: white;
+            color: #1f4c78;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-book-submit:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+            .book-tour-section {
+                background: #1f4c78;
+            }
+
+            .tour-wrapper {
+                flex-direction: column;
+            }
+
+            .tour-left,
+            .tour-right {
+                width: 100%;
+            }
+
+            .tour-left {
+                background-color: white;
+                padding: 40px 20px;
+            }
+
+            .tour-blob-frame {
+                height: 350px;
+            }
+
+            .tour-right {
+                padding: 40px 20px;
+            }
+        }
+
+        /* --- Registration Steps Section Styling --- */
+        .registration-section {
+            width: 100%;
+            min-height: 85vh;
+            /* Split background bleed */
+            background: linear-gradient(to right, #1f4c78 50%, #ffffff 50%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+        }
+
+        .reg-container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Left Column */
+        .reg-left {
+            width: 50%;
+            background-color: #4982b0;
+            color: #ffffff;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reg-main-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .step-item {
+            margin-bottom: 40px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            background-color: white;
+            color: #4982b0;
+        }
+
+        .step-title {
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-left: 47px;
+            /* Aligns text with the title, past the circle */
+        }
+
+        /* Rounded White Button */
+        .btn-reg-white {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #1f4c78;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 40px;
+            border-radius: 30px;
+            margin-left: 47px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-reg-white:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            color: #1f4c78;
+        }
+
+        /* Right Column */
+        .reg-right {
+            width: 50%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .reg-blob-frame {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Irregular blob shape matching the site style */
+            
+        }
+
+        .reg-blob-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 991px) {
+            .registration-section {
+                background: #1f4c78;
+            }
+
+            .reg-container {
+                flex-direction: column;
+            }
+
+            .reg-left,
+            .reg-right {
+                width: 100%;
+            }
+
+            .reg-left {
+                padding: 60px 20px;
+            }
+
+            .reg-right {
+                background-color: #1f4c78;
+                padding: 40px 20px;
+            }
+
+            .reg-blob-frame {
+                height: 350px;
+            }
+
+            .step-text,
+            .btn-reg-white {
+                margin-left: 0;
+                text-align: left;
+            }
+
+            .step-header {
+                justify-content: flex-start;
+            }
+        }
+
+        /* --- Academic Calendar Styling --- */
+        .calendar-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            color: #1f4c78;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .calendar-logo {
+            max-width: 180px;
+            margin-bottom: 10px;
+        }
+
+        .calendar-main-title {
+            font-weight: 800;
+            font-size: 3.5rem;
+            border-top: 5px solid #1f4c78;
+            display: inline-block;
+            padding-top: 10px;
+            letter-spacing: 5px;
+            width: 100%;
+        }
+
+        /* Months Grid Layout */
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .month-item {
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .month-name {
+            background-color: #1f4c78;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 5px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .days-labels {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .days-numbers {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            font-size: 0.7rem;
+            row-gap: 2px;
+        }
+
+        /* Day Markers */
+        .day-dot {
+            width: 18px;
+            height: 18px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
+            margin: 0 auto;
+            border-radius: 50%;
+            font-weight: 700;
         }
-        
-        .download-button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+        .day-dot.stat {
+            background-color: #ffe082;
         }
-        
-        .download-button i {
-            font-size: 1.2rem;
+
+        /* Statutory Holiday - Yellow */
+        .day-dot.pd {
+            background-color: #d4e3d5;
         }
-        
-        /* Language-specific styling for calendar */
-        html[lang="en"] [data-lang-ar].download-button {
-            display: none;
+
+        /* PD Day - Gray/Green */
+        .day-dot.isl {
+            background-color: #a5d6a7;
         }
-        
-        html[lang="ar"] [data-lang-en].download-button {
-            display: none;
+
+        /* Islamic Holiday - Green */
+
+        /* Star icon for the very first days */
+        .day-dot.star {
+            position: relative;
         }
-        
-        /* RTL support for calendar section */
-        html[lang="ar"] .calendar-section {
-            direction: rtl;
+
+        .day-dot.star::after {
+            content: '★';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: orange;
+            font-size: 10px;
         }
-        
-        /* Mobile responsiveness for calendar */
-        @media (max-width: 768px) {
-            .calendar-section {
-                padding: 4rem 1rem;
+
+        /* Important Dates List */
+        .calendar-info-row {
+            font-size: 0.9rem;
+            line-height: 2.2;
+            font-weight: 500;
+            border-top: 2px solid #1f4c78;
+            padding-top: 30px;
+        }
+
+        /* Legend Styling */
+        .calendar-legend {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            font-weight: 700;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.stat {
+            background-color: #ffe082;
+        }
+
+        .dot.pd {
+            background-color: #d4e3d5;
+        }
+
+        .dot.isl {
+            background-color: #a5d6a7;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1100px) {
+            .months-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
-            
-            .section-title {
+        }
+
+        @media (max-width: 767px) {
+            .months-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .calendar-main-title {
                 font-size: 2rem;
             }
-            
-            .section-description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .calendar-image {
-                max-width: 100%;
-            }
-            
-            .download-button {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
+
+            .calendar-legend {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
             }
         }
 
-        /* Icon styling for navigation */
-        .nav-links a:not(.cta-button) i, 
-        .mobile-menu a:not(.cta-button) i {
-            margin-right: 5px;
-            font-size: 0.9em;
-            color: var(--primary-color);
-            transition: transform 0.3s ease;
+        :root {
+            --dark-blue: #1d5b8c;
+            --light-blue: #4e84b1;
+            --pd-green: #cfe2b6;
+            --holiday-yellow: #f9d74c;
+            --text-grey: #555;
+            --faded-grey: #bbb;
         }
-        
-        html[lang="ar"] .nav-links a:not(.cta-button) i,
-        html[lang="ar"] .mobile-menu a:not(.cta-button) i {
-            margin-right: 0;
-            margin-left: 5px;
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #fff;
+            padding: 20px;
         }
-        
-        .nav-links a:not(.cta-button):hover i,
-        .mobile-menu a:not(.cta-button):hover i {
-            transform: translateY(-2px);
+
+        .calendar-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            max-width: 95%;
+            margin-top: 20px !important;
+            margin: auto;
         }
-        
-        /* Restore CTA button icon styling */
-        .cta-button i {
-            font-size: 1.1em;
-            margin-top: 1px;
+
+        .month-container {
+            font-size: 11px;
+            color: var(--text-grey);
+        }
+
+        .header {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 6px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Every second month has a slightly lighter blue in the image */
+        .month-container:nth-child(even) .header {
+            background-color: var(--light-blue);
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            color: var(--faded-grey);
+            margin-bottom: 5px;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+
+        .day {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Marker Styles */
+        .circle-green {
+            background-color: var(--pd-green);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        .circle-yellow {
+            background-color: var(--holiday-yellow);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Star marker using a pseudo-element */
+        .star-marker::before {
+            content: "★";
+            position: absolute;
+            color: var(--holiday-yellow);
+            font-size: 28px;
+            z-index: -1;
+            top: -4px;
+        }
+
+        .faded {
+            color: var(--faded-grey);
+        }
+
+        :root {
+            --jcal2-navy: #1d5b8c;
+            --jcal2-steel: #4e84b1;
+            --jcal2-pd-green: #cfe2b6;
+            --jcal2-stat-yellow: #f9d74c;
+            --jcal2-islamic-green: #6fb048;
+            --jcal2-gray-text: #555;
+            --jcal2-gray-faded: #bbb;
+        }
+
+        .jcal-v2-wrapper {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 95%;
+            margin: 20px auto;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        .jcal-v2-month {
+            font-size: 11px;
+            color: var(--jcal2-gray-text);
+        }
+
+        /* Alternating Headers */
+        .jcal-v2-header {
+            color: white;
+            text-align: center;
+            padding: 7px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .jcal-v2-blue-dark {
+            background-color: var(--jcal2-navy);
+        }
+
+        .jcal-v2-blue-light {
+            background-color: var(--jcal2-steel);
+        }
+
+        .jcal-v2-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            color: var(--jcal2-gray-faded);
+            margin-bottom: 5px;
+        }
+
+        .jcal-v2-days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+
+        .jcal-v2-day-cell {
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Marker Classes */
+        .jcal-v2-mark {
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jcal-v2-stat {
+            background-color: var(--jcal2-stat-yellow);
+        }
+
+        .jcal-v2-pd {
+            background-color: var(--jcal2-pd-green);
+        }
+
+        .jcal-v2-islamic {
+            background-color: var(--jcal2-islamic-green);
             color: white;
         }
+
+        /* Star styling - specifically for June */
+        .jcal-v2-star {
+            z-index: 1;
+        }
+
+        .jcal-v2-star::before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f9d74c'%3E%3Cpath d='M12 1.7l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.31L12 1.7z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .jcal-v2-faded {
+            color: var(--jcal2-gray-faded);
+        }
+
+        /* --- RESPONSIVE MODIFICATIONS --- */
+
+        /* For Tablets (Small Laptops) */
+        @media (max-width: 1024px) {
+            .jcal-v2-wrapper {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 months per row */
+                gap: 20px;
+                padding: 0 10px;
+            }
+        }
+
+        /* For Small Tablets / Large Phones */
+        @media (max-width: 768px) {
+            .jcal-v2-wrapper {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 months per row */
+            }
+
+            .jcal-v2-month {
+                font-size: 13px;
+                /* Slightly larger text for mobile readability */
+            }
+
+            .jcal-v2-day-cell {
+                height: 35px;
+                /* Larger touch targets */
+            }
+
+            .jcal-v2-mark {
+                width: 28px;
+                height: 28px;
+            }
+
+            .jcal-v2-star::before {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* For Mobile Phones */
+        @media (max-width: 480px) {
+            .jcal-v2-wrapper {
+                grid-template-columns: 1fr;
+                /* Stack months vertically */
+                max-width: 350px;
+                /* Keep the calendar from getting too wide/distorted */
+            }
+
+            .jcal-v2-header {
+                padding: 10px 0;
+                font-size: 14px;
+            }
+        }
+
+        /* ----------------- */
+        @media (max-width: 1024px) {
+            .calendar-row {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* Small Tablet / Large Phone: 2 Months per row */
+        @media (max-width: 768px) {
+            .calendar-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .day {
+                font-size: 14px;
+                /* Slightly larger text for mobile */
+            }
+        }
+
+        /* Mobile View: 1 Month per row (Stacked) */
+        @media (max-width: 480px) {
+            .calendar-row {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+
+            .month-container {
+                max-width: 100%;
+                /* Centers the month on small screens */
+
+            }
+
+            .header {
+                font-size: 1.1rem;
+                padding: 10px 0;
+            }
+
+            /* Make circles and markers slightly larger for "fat finger" readability */
+            .circle-green,
+            .circle-yellow {
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                display: inline-block;
+                border-radius: 50%;
+            }
+        }
+
+        :root {
+            --jana-blue: #1d5b8c;
+            --jana-yellow: #f9d74c;
+            --jana-light-green: #cfe2b6;
+            --jana-dark-green: #6fb048;
+        }
+
+        .jana-btm-section {
+            max-width: 95%;
+            margin: 40px auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--jana-blue);
+            padding: 0 20px;
+        }
+
+        .jana-btm-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        /* Logo Styling */
+        .jana-btm-logo-area {
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .jana-btm-logo-text {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 0.8;
+            background: linear-gradient(to bottom, #7bb9e8, var(--jana-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .jana-btm-subtext {
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--jana-blue);
+            margin-bottom: 10px;
+        }
+
+        .jana-btm-title {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            border-top: 2px solid var(--jana-blue);
+            padding-top: 5px;
+            margin-top: 5px;
+        }
+
+        /* Events List Styling */
+        .jana-btm-events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 40px;
+            flex-grow: 1;
+        }
+
+        .jana-btm-events-col p {
+            margin: 8px 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Divider */
+        .jana-btm-divider {
+            height: 3px;
+            background-color: var(--jana-blue);
+            margin: 20px 0;
+        }
+
+        /* Legend Styling */
+        .jana-btm-legend {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .jana-btm-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .jana-btm-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .jana-stat {
+            background-color: var(--jana-yellow);
+        }
+
+        .jana-pd {
+            background-color: var(--jana-light-green);
+        }
+
+        .jana-isl {
+            background-color: var(--jana-dark-green);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+
+        @media (max-width: 900px) {
+            .jana-btm-top-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .jana-btm-events-grid {
+                grid-template-columns: 1fr;
+                /* Stack event columns on tablet */
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .jana-btm-legend {
+                flex-direction: column;
+                /* Stack legend on mobile */
+                align-items: flex-start;
+                padding-left: 20%;
+                gap: 10px;
+            }
+
+            .jana-btm-logo-text {
+                font-size: 38px;
+            }
+
+            .jana-btm-subtext {
+                font-size: 20px;
+            }
+        }
+
+        :root {
+            --jana-dark-blue: #1d4b7a;
+            /* Matching the blue in the image */
+        }
+
+        .jana-j-section {
+            display: flex;
+            min-height: 600px;
+            width: 100%;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        /* --- Left Side --- */
+        .jana-j-image-side {
+            flex: 1;
+            background-image: url('img/new/15.png');
+            /* REPLACE WITH YOUR IMAGE PATH */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- Right Side --- */
+        .jana-j-content-side {
+            flex: 1;
+            background-color: var(--jana-dark-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            text-align: left;
+        }
+
+        .jana-j-heading {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* --- The Map Pin Shape --- */
+        /* .jana-j-pin-wrapper {
+            position: relative;
+            width: 280px;
+            height: 350px;
+      
+            margin-bottom: 30px;
+        } */
+
+        .jana-j-pin-image {
+            width: 400px;
+            height: 400px;
+          
+         
+            overflow: hidden;
+            position: relative;
+       
+            z-index: 2;
+        }
+
+        .jana-j-pin-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Creating the point of the pin */
+        
+
+        /* --- Info List Styling --- */
+        .jana-j-info-list {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .jana-j-info-list p {
+            margin: 12px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .jana-j-info-list a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .jana-j-info-list strong {
+            font-weight: 700;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .jana-j-section {
+                flex-direction: column;
+                /* Stack vertically on tablet/mobile */
+            }
+
+            .jana-j-image-side {
+                height: 400px;
+                width: 100%;
+            }
+
+            .jana-j-content-side {
+                padding: 40px 20px;
+            }
+
+            .jana-j-heading {
+                text-align: center;
+                font-size: 1.5rem;
+            }
+        }
+           .stage {
+      
+      position: absolute; top: 30px; left: -175px;
+      width: min(92vw, 520px);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+     @media (max-width: 992px)
+     {
+        .stage {
+           top: 0px !important;
+           left: -167px !important;
+        }
+        .hand-wrap
+        {
+        width: 40% !important;  
+        }
+     }
+
+    .hello {
+      position: absolute;
+      top: 3%;
+      right: 4%;
+      background: #fff;
+      color: #173454;
+      padding: 14px 22px;
+      border-radius: 20px;
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      animation: floatBubble 1.6s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .hello::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      bottom: -10px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      transform: rotate(45deg);
+      border-radius: 4px;
+    }
+
+    .hand-wrap {
+      position: relative;
+      width: 46%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: 68% 82%;
+      animation: wave 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.22));
+      z-index: 2;
+    }
+
+    .hand-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .line {
+      position: absolute;
+      border: 6px solid #fff;
+      border-color: #fff transparent transparent transparent;
+      border-radius: 50%;
+      opacity: 0.85;
+      animation: pulse 1.2s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .line.one {
+      width: 74px;
+      height: 74px;
+      top: 18%;
+      right: 14%;
+      transform: rotate(25deg);
+    }
+
+    .line.two {
+      width: 48px;
+      height: 48px;
+      top: 23%;
+      right: 22%;
+      transform: rotate(25deg);
+      animation-delay: 0.15s;
+    }
+
+    .line.three {
+      width: 64px;
+      height: 64px;
+      left: 15%;
+      bottom: 22%;
+      transform: rotate(205deg);
+      animation-delay: 0.1s;
+    }
+
+    .line.four {
+      width: 42px;
+      height: 42px;
+      left: 23%;
+      bottom: 28%;
+      transform: rotate(205deg);
+      animation-delay: 0.25s;
+    }
+
+    .shadow {
+      position: absolute;
+      bottom: 8%;
+      width: 42%;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.25);
+      filter: blur(7px);
+      animation: shadowMove 1.2s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg) translateY(0); }
+      15% { transform: rotate(14deg) translateY(-2px); }
+      30% { transform: rotate(-8deg) translateY(0); }
+      45% { transform: rotate(14deg) translateY(-2px); }
+      60% { transform: rotate(-6deg) translateY(0); }
+      75% { transform: rotate(10deg) translateY(-1px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.92) rotate(var(--r, 0deg)); }
+      50% { opacity: 1; transform: scale(1.08) rotate(var(--r, 0deg)); }
+    }
+
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.04); }
+    }
+
+    @keyframes shadowMove {
+      0%, 100% { transform: scaleX(1); opacity: 0.25; }
+      50% { transform: scaleX(0.9); opacity: 0.15; }
+    }
+     
+
+     [data-aos="bounce-in"] {
+    opacity: 0;
+    transform: scale(0.9);
+    transition-property: transform, opacity;
+  }
+
+  [data-aos="bounce-in"].aos-animate {
+    opacity: 1;
+    animation: customBounce 1s ease;
+    transform: scale(1);
+  }
+
+  @keyframes customBounce {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) translateY(40px);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.08) translateY(-10px);
+    }
+    70% {
+      transform: scale(0.96) translateY(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+   :root {
+            --primarychild-color: #4A90E2;
+            --secondarychild-color: #F5A623;
+            --bgchild-color: #E3F2FD;
+            --textchild-color: #333;
+        }
+
+        .main-container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .heading {
+            color: var(--primarychild-color);
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: bounceIn 1.5s ease-out;
+        }
+
+        .paragraph {
+            font-size: 1.5rem;
+            color: var(--textchild-color);
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in;
+        }
+/* Ensure that paragraphs inside a container have proper spacing and don't overlap */
+p {
+    width: 100%; /* Ensure the paragraph takes up the full container width */
+    white-space: normal; /* Allow the text to wrap onto multiple lines */
+    overflow: hidden; /* Hide any overflow */
+    word-wrap: break-word; /* Break words to avoid overflow */
+}
+        .visual-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            border-radius: 20px;
+           
+            overflow: hidden;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .image-element {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+        }
+
+        .jump {
+            animation: jump 0.6s ease-in-out;
+        }
+
+        .wave {
+            animation: wavechild 1s ease-in-out infinite alternate;
+        }
+
+        .spin {
+            animation: spin 1s ease-in-out;
+        }
+
+        @keyframes jump {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-100px); }
+        }
+
+        @keyframes wavechild {
+            0% { transform: translateX(-50%) rotate(-5deg); }
+            100% { transform: translateX(-50%) rotate(5deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: translateX(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .message-bubble {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 15px 25px;
+            font-weight: bold;
+            color: var(--primarychild-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            bottom: 320px;
+            white-space: nowrap;
+        }
+
+        .message-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+
+        .visible-message {
+            opacity: 1;
+        }
+
+        .sun {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFD700;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); box-shadow: 0 0 20px #FFD700; }
+            to { transform: scale(1.1); box-shadow: 0 0 50px #FFD700; }
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: moveClouds 20s linear infinite;
+        }
+
+        .cloud1 { width: 120px; height: 40px; top: 50px; left: -150px; }
+        .cloud2 { width: 150px; height: 50px; top: 120px; left: -200px; animation-delay: 5s; }
+
+        @keyframes moveClouds {
+            from { left: -200px; }
+            to { left: 100%; }
+        }
+
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .button-spin {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background-color: var(--primarychild-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .button-spin:hover {
+            background-color: #357ABD;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .button-spin:active {
+            transform: translateY(0);
+        }
+
+        .button-hello {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background-color: var(--primarychild-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .button-hello:hover {
+            background-color: #357ABD;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .button-hello:active {
+            transform: translateY(0);
+        }
+        .navbar-toggler
+        {
+            background-color: var(--jana-blue) !important;
+        }
+
+        @media (max-width: 700px)
+        {
+             .navbar-nav
+        {
+            text-align: center !important;
+            padding-top: 20px;
+            
+        }
+        }
+          .gallery-wrapper {
+    width: 100%;
+    
+    background: #6a8ea5;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  /* ===== GRID: 6 columns × 6 rows ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 2.2fr 2.2fr 1.6fr 1.4fr 1.4fr;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 7px;
+    padding: 7px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .photo {
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---- 12 photos placement ---- */
+
+  /* 1 — Top-left tall */
+  .p1  { grid-column: 1 / 2;  grid-row: 1 / 3; }
+
+  /* 2 — Top-center large */
+  .p2  { grid-column: 2 / 4;  grid-row: 1 / 3; }
+
+  /* 3 — Top-right */
+  .p3  { grid-column: 4 / 6;  grid-row: 1 / 2; }
+
+  /* 4 — Far top-right tall */
+  .p4  { grid-column: 6 / 7;  grid-row: 1 / 3; }
+
+  /* 5 — Mid-right */
+  .p5  { grid-column: 4 / 6;  grid-row: 2 / 3; }
+
+  /* 6 — Mid-left */
+  .p6  { grid-column: 1 / 2;  grid-row: 3 / 5; }
+
+  /* 7 — Mid-center-left large */
+  .p7  { grid-column: 2 / 4;  grid-row: 3 / 5; }
+
+  /* 8 — Mid-center */
+  .p8  { grid-column: 4 / 5;  grid-row: 3 / 5; }
+
+  /* 9 — Mid-far-right wide */
+  .p9  { grid-column: 5 / 7;  grid-row: 3 / 5; }
+
+  /* 10 — Bottom-left */
+  .p10 { grid-column: 1 / 2;  grid-row: 5 / 7; }
+
+  /* 11 — Bottom-center */
+  .p11 { grid-column: 2 / 4;  grid-row: 5 / 7; }
+
+  /* 12 — Bottom-right wide */
+  .p12 { grid-column: 4 / 7;  grid-row: 5 / 7; }
+
+  /* ===== BOTTOM BAR ===== */
+  .gallery-bottom {
+    background: #527a8d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 30px;
+    position: relative;
+  }
+
+  .gallery-bottom h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 52px);
+    color: #ffffff;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    direction: ltr;
+  }
+
+  .coming-soon {
+    position: absolute;
+    left: 20px;
+    bottom: 12px;
+    background: #d4a843;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(10px, 1.2vw, 15px);
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    transform: rotate(4deg);
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.3);
+    direction: ltr;
+  }
+
+  /* ===== PLACEHOLDER (remove when using real images) ===== */
+  .photo {
+    background: linear-gradient(135deg, #4d7f94 0%, #3a6578 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .photo span {
+    color: rgba(255,255,255,0.4);
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    direction: ltr;
+  }
     </style>
 </head>
+
 <body>
-    <header id="header">
-        <nav>
-            <a href="index.html" class="logo">
-                <img src="janaacad-icon.jpg" alt="Jana Academy Logo">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
-                <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
-                <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
-                <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
-                <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
-                <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
-                <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
-                <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
-                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en><i class="fas fa-user-plus"></i> Register Now!</a></li>
-                <li><a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar><i class="fas fa-user-plus"></i> سجل الآن</a></li>
-            </ul>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="mobile-menu" id="mobile-menu">
-                <ul>
-                    <li><a href="index.html" data-lang-en><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html" data-lang-en><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="gallery.html" data-lang-en><i class="fas fa-images"></i> Gallery</a></li>
-                    <li><a href="team.html" data-lang-en><i class="fas fa-users"></i> Our Team</a></li>
-                    <li><a href="#calendar" data-lang-en><i class="fas fa-calendar-alt"></i> Calendar</a></li>
-                    <li><a href="index.html" data-lang-ar><i class="fas fa-home"></i> الرئيسية</a></li>
-                    <li><a href="about.html" data-lang-ar><i class="fas fa-info-circle"></i> من نحن</a></li>
-                    <li><a href="gallery.html" data-lang-ar><i class="fas fa-images"></i> معرض الصور</a></li>
-                    <li><a href="team.html" data-lang-ar><i class="fas fa-users"></i> فريقنا</a></li>
-                    <li><a href="#calendar" data-lang-ar><i class="fas fa-calendar-alt"></i> التقويم</a></li>
-                    <li>
-                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-en>
-                            <i class="fas fa-user-plus"></i> Register Now!
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button" data-lang-ar>
-                            <i class="fas fa-user-plus"></i> سجل الآن
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <div class="language-switcher">
-        <button data-lang="en">EN</button>
-        <button data-lang="ar">عربي</button>
+    <div class="site-container">
+
+        <header class="header-area">
+            <nav class="navbar navbar-expand-xl navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="img/new/logo - color.png" alt="Jana Academy">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#janaMenu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="janaMenu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#story">Our Story</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#about">About Jana</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#values">Our Values</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#mission">Our Mission</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#why">Why Jana</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Fees">Tuition & Fees</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#steps">Registration process
+
+                                </a></li>
+                            <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#Calendar">Calendar</a></li>
+                            <li class="nav-item"><a class="nav-link nav-cta" href="#BOOK">BOOK A TOUR</a></li>
+                            <li class="nav-item"><a class="nav-link nav-cta" href="#call">CALL US</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="welcome-section">
+            <div class="welcome-left">
+                <div class="hero-text">
+
+                    <h1>Welcome to<br>Jana Academy</h1>
+                    <p >Raise With Faith</p>
+                </div>
+
+                <div class="news-carousel-bar">
+                    <div class="new-tag">NEW</div>
+                    <div id="welcomeNews" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <h5>Campus Expansion Ahead</h5>
+                                <p>We are excited to announce plans to expand our campus, creating more opportunities
+                                    for students.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <h5>Sunday Arabic Program</h5>
+                                <p>Join our nurturing Sunday program focused on developing strong language skills.</p>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#welcomeNews"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#welcomeNews"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="welcome-right">
+                <div class="blob-frame" style="position: relative;">
+                    <img src="img/new/1.png" alt="Student">
+                    <div class="stage" style="position: absolute; top: 30px; left: -175px;">
+                        <div class="shadow"></div>
+
+                        <div class="hand-wrap">
+                            <img src="img/new/hand2.png" alt="Waving hand">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="story-section" style="margin-top: 4px;">
+            <div class="story-left">
+                <img src="img/book.png" alt="Icon" class="story-icon">
+                <h2>Our Story</h2>
+                <p>Our school began as a family-run vision, founded by educator Randah Alhorani, Head of School, and her
+                    daughter Jana Tayfour, Curriculum Manager, starting with just two teachers and three preschool-aged
+                    children. From the beginning, we set out to build a private Islamic school that nurtures the whole
+                    child through strong early childhood education, faith-based learning, and academic excellence.
+                    Today, we serve over 30 students from preschool through primary school, continuing our commitment to
+                    individualized learning, close parent partnerships, and a warm, values-driven school community
+                    rooted in Islamic principles.</p>
+            </div>
+
+            <div class="story-right">
+                <div class="story-oval">
+                    <img src="img/new/2.png" alt="Children">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="elementary-section">
+            <div class="elementary-header">
+                <h2>About Jana Academy Elementary School</h2>
+                <p>Jana Academy Elementary School follows the Ontario curriculum and is rooted in Islamic identity, with
+                    a strong Arabic language program. Throughout our dedicated educators, and strong partnerships with
+                    families and communities, we prepare confident learners and responsible global citizens.</p>
+            </div>
+
+            <div class="program-row">
+                <div class="program-img-circle"><img src="img/new/3.png" alt="Preschool"></div>
+                <div class="program-box">
+                    <h4>1. Preschool</h4>
+                    <p>Children build strong foundations in both English and Arabic through a rich bilingual environment
+                        led by an English-speaking educator, an Arabic-speaking educator, and supportive bilingual
+                        staff.</p>
+                </div>
+            </div>
+
+            <div class="program-row">
+                <div class="program-img-circle"><img src="img/new/4.png" alt="Kindergarten"></div>
+                <div class="program-box">
+                    <h4>2. Kindergarten</h4>
+                    <p>Our goal is to help children grow not just as students, but as people. We create a supportive
+                        space where learning feels engaging, and where kids are guided to build strong relationships,
+                        make sense of their emotions, and show empathy.</p>
+                </div>
+            </div>
+
+            <div class="program-row">
+                <div class="program-img-circle"><img src="img/new/5.png" alt="Elementary Grades"></div>
+                <div class="program-box">
+                    <h4>3. Elementary Grades</h4>
+                    <p>Our students learn in a setting that encourages curiosity by inviting conversation, teamwork,
+                        hands-on exploration, and thoughtful engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission" class="mission-vision-section">
+            <div class="mission-left">
+                <h2>Our Mission</h2>
+                <p>Our mission is to provide a safe, nurturing, and welcoming environment that fosters a love of science
+                    and learning, making school a second home for our pupils. We deliver innovative, high-quality
+                    education that promotes academic excellence and preserves Islamic identity through dedicated,
+                    exemplary educators. We also strengthen meaningful partnerships between generations in the diaspora
+                    and their wider communities, respecting cultural and religious values.</p>
+
+                <h2>Our Vision</h2>
+                <p>We aspire that Jana Academy becomes an academic and educational edifice elevating our generations
+                    onto excellence and leadership, a unique model that educational institutions worldwide would benefit
+                    from.</p>
+
+                    <div class="main-container">
+        
+        <div class="visual-container">
+            <div class="image-wrapper" id="characterBox">
+                <div class="message-bubble" id="bubble">Hello! Let's learn together!</div>
+                <img src="img/new/childs_new.png" alt="Happy Students" class="childs image-element" id="character">
+            </div>
+        </div>
+
+        <div class="button-container">
+          
+            <button class="button-hello" onclick="saySomething()">Say Hello!</button>
+        </div>
     </div>
+            </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text" data-aos="fade-right" data-bilingual>
-                <div data-lang-en>
-                    <h1>Welcome to Jana Academy</h1>
-                    <p>A full-time Islamic elementary school in Mississauga offering comprehensive education in English and Arabic, with French language programs. Enrollment for 2024-2025 open soon!</p>
-                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button"><i class="fas fa-user-plus"></i> Register Now!</a>
-                        <a href="about.html" class="cta-button secondary">About Us</a>
-                    </div>
+            <div class="mission-right">
+                <div class="mission-blob ">
+                    <img src="img/new/6.png" alt="Kids playing outdoors">
                 </div>
-                <div data-lang-ar>
-                    <h1>أهلاً بكم في أكاديمية جنى</h1>
-                    <p>مدرسة إسلامية ابتدائية بدوام كامل في مسيساجا تقدم تعليماً شاملاً باللغتين الإنجليزية والعربية، مع برامج اللغة الفرنسية. التسجيل للعام الدراسي 2024-2025 سيفتح قريباً!</p>
-                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
-                        <a href="https://www.jotform.com/build/233487123972260?fromMyWorkspace=1" class="cta-button"><i class="fas fa-user-plus"></i> سجل الآن</a>
-                        <a href="about.html" class="cta-button secondary">اعرف المزيد</a>
+            </div>
+        </section>
+        <section id="values" class="values-directors-section">
+            <div class="vd-left">
+                <div class="blob-frame">
+                    <img src="img/new/7.png" alt="Happy Teacher Day Display">
+                </div>
+            </div>
+
+            <div class="vd-right">
+                <div class="content-padding">
+                    <h2 class="section-title">Our Values</h2>
+
+                    <div class="values-content">
+                        <h5 class="faith-header">F.A.I.T.H</h5>
+                        <ul class="faith-list">
+                            <li><strong>F</strong> – Focus (Sincere Intention and Concentration)</li>
+                            <li><strong>A</strong> – Autonomy (Independence with Integrity)</li>
+                            <li><strong>I</strong> – Inquiry (Reflection and Thoughtful Exploration)</li>
+                            <li><strong>T</strong> – Trust (Trust in God, Then in Oneself)</li>
+                            <li><strong>H</strong> – Harmony (Balance and Respect)</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="section-title mt-5">Meet Our Directors</h2>
+
+                    <div class="directors-flex">
+                        <div class="director-card">
+                            <div class="director-img-circle">
+                                <img src="img/new/8.png" alt="Mrs. Randah Hourani">
+                            </div>
+                            <h5 class="director-name">Mrs. Randah Hourani</h5>
+                            <p class="director-role" >Principal</p>
+                            <p class="director-sub">Family counsellor</p>
+                        </div>
+
+                        <div class="director-card">
+                            <div class="director-img-circle">
+                                <img src="img/new/9.png" alt="Mrs. Jana Nawras Taifour">
+                            </div>
+                            <a  href="https://www.linkedin.com/in/jana-tayfour/" class="director-name" style="color: #0c5385; text-decoration: none;">Mrs. Jana Nawras Taifour</a>
+                            <p class="director-role">Curriculum Manager, Vice Principal</p>
+                            <p class="director-creds">
+                                Masters of Education | University of Toronto<br>
+                                Bachelors of English | Abu Dhabi University<br>
+                                Specializes in hands-on learning approach, active learning and skill-based development
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-image" data-aos="fade-left">
-                <div class="hero-slideshow">
-                    <img src="facility/facility (1).jpeg" alt="Jana Academy Facility" class="active">
-                    <img src="facility/facility (10).jpeg" alt="Jana Academy Facility">
-                    <img src="janaacademy_gallery/jana1 (31).jpeg" alt="Jana Academy Facility">
-                    <img src="janaacademy_gallery/jana1 (18).jpeg" alt="Jana Academy Activities">
-                    <img src="janaacademy_gallery/jana1 (19).jpeg" alt="Jana Academy Activities">
-                    <div class="slideshow-nav">
-                        <button onclick="prevSlide()" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                        <button onclick="nextSlide()" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+        </section>
+        <section id="why" class="why-choose-section">
+            <div class="container">
+                <h2 class="main-title text-center">Why Families Choose Jana Academy</h2>
+
+                <div class="row g-5 mt-4">
+                    <div class="col-md-4">
+                        <div class="feature-box">
+                            <h4 class="feature-title">Bilingual Education</h4>
+                            <div class="blue-line"></div>
+                            <p class="feature-text">
+                                Jana Academy offers a high-quality bilingual education that helps students achieve
+                                strong fluency in both English and Arabic. Our curriculum follows internationally
+                                recognized academic standards inspired by Ontario education benchmarks, ensuring
+                                academic excellence while preparing students for a global future.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="feature-box">
+                            <h4 class="feature-title">Islamic Values at the Core of Learning</h4>
+                            <div class="blue-line"></div>
+                            <p class="feature-text">
+                                As a values-driven Islamic academy, Jana Academy integrates Islamic principles into
+                                everyday learning. We nurture empathy, respect, responsibility, and confidence, helping
+                                students grow academically, spiritually, and socially while engaging positively with the
+                                wider community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="feature-box">
+                            <h4 class="feature-title">Strong Communication</h4>
+                            <div class="blue-line"></div>
+                            <p class="feature-text">
+                                Jana Academy is a close-knit school community where parents, teachers, and students work
+                                together. With a 7:1 student-to-teacher ratio, our small class sizes allow personalized
+                                learning, meaningful relationships, and continuous communication that supports every
+                                child's success.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="feature-box">
+                            <h4 class="feature-title">Thoughtful use of AI</h4>
+                            <div class="blue-line"></div>
+                            <p class="feature-text">
+                                Preparing Students for Tomorrow: We view digital and AI literacy as essential life
+                                skills, with trained teachers, effective classroom practices, and carefully managed AI
+                                use to enhance learning safely.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="feature-box">
+                            <h4 class="feature-title">A Mission-Driven Community</h4>
+                            <div class="blue-line"></div>
+                            <p class="feature-text">
+                                Our teachers are carefully selected for both their professional excellence and their
+                                commitment to Islamic values, and our parents share a common dedication to investing in
+                                their children's growth. When you join Jana Academy, you become part of a united,
+                                purpose-driven community focused on nurturing principled learners.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                        <div class="feature-image">
+                            <img src="img/new/10.png" alt="Education Illustration" class="img-fluid">
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+        <section id="Fees" class="tuition-section">
+            <div class="container">
+                <h2 class="section-main-title text-center">Tuition & Annual Fees</h2>
+
+                <div class="table-responsive mb-5">
+                    <table class="table custom-fees-table">
+                        <thead>
+                            <tr>
+                                <th>Program</th>
+                                <th>Monthly Tuition</th>
+                                <th>Annual Book/Activity Fee (2025-2026)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Preschool</td>
+                                <td>$550/month</td>
+                                <td>$250/school year</td>
+                            </tr>
+                            <tr>
+                                <td>Kindergarten</td>
+                                <td>$500/month</td>
+                                <td>$250/school year</td>
+                            </tr>
+                            <tr>
+                                <td>Elementary (Grades 1–5)</td>
+                                <td>$650/month</td>
+                                <td>$250/school year</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <h3 class="sub-table-title text-center">Application Package Fees</h3>
+                        <table class="table custom-fees-table small-text-table" style="padding: 20px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 35%;">Item</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Registration Form</td>
+                                    <td>Please submit the online form:<br><a
+                                            href="https://form.jotform.com/233487123972260" target="_blank"
+                                            class="table-link">https://form.jotform.com/233487123972260</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Registration Fee</td>
+                                    <td>$150 (due with application, non-refundable)</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuition Payments</td>
+                                    <td>Payable by post-dated cheques from September to January, covering the full
+                                        academic year including holidays and school closure days</td>
+                                </tr>
+                                <tr>
+                                    <td>First Month Tuition</td>
+                                    <td>The first month's tuition is required. 50% of this amount is refundable in the
+                                        event of withdrawal. This can be paid via e-transfer to
+                                        janaacademycanada@gmail.com.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sibling Discount</td>
+                                    <td>10% discount on the monthly tuition fees for the second child.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h3 class="sub-table-title text-center">Additional Fees & Programs</h3>
+                        <table class="table custom-fees-table small-text-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40%;">Item</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Before & After School Care</td>
+                                    <td>$19/hour per session (AM or PM), subject to availability</td>
+                                </tr>
+                                <tr>
+                                    <td>Co-curricular Programs</td>
+                                    <td>Not included in tuition; fees vary by program</td>
+                                </tr>
+                                <tr>
+                                    <td>Special Events</td>
+                                    <td>Not included in tuition</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday/Sunday Programs</td>
+                                    <td>Not included; announced when available</td>
+                                </tr>
+                                <tr>
+                                    <td>Returned Cheque Fee</td>
+                                    <td>$100 (bank + administrative fees)</td>
+                                </tr>
+                                <tr>
+                                    <td>Withdrawal Policy</td>
+                                    <td>Two months’ tuition applies if a child withdraws during the school year</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="reviews" class="reviews-section">
+            <div class="container">
+                <h2 class="reviews-title">REVIEWS</h2>
+
+                <div class="stars-overlay">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-lg-4">
+                        <div class="review-item">
+                            <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>Jana Academy has had a truly positive impact on my children, both academically and
+                                spiritually. I am deeply grateful for the genuine care and effort the teachers and staff
+                                put into supporting each student individually. They took the time to understand my
+                                children's needs, encouraged their strengths, and helped them grow with confidence.</p>
+                        </div>
+                        <div class="review-item">
+                           <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>What makes Jana Academy special is not only the quality of education, but also the strong
+                                spiritual environment they create. The school instill beautiful Islamic values, good
+                                manners, and a sense of responsibility and kindness. My children come home excited about
+                                what they learned, and I can see a real improvement in their character, discipline, and
+                                connection to their faith.</p>
+                        </div>
+                        <div class="review-item">
+                            <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>Our experience with Jana Academy has been truly positive. The school nurtures not just
+                                the mind, but also the heart and character. We have seen growth in academics,
+                                improvement in communication skills, and beautiful spiritual development. The Islamic
+                                environment has had a noticeable impact our child is more mindful, respectful, and eager
+                                to go to school. We feel blessed to be part of this school community.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="review-item">
+                          <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>Jana Academy has welcomed my son with open arms and has made him feel safe and loved. He
+                                is excited every morning to go to school because the environment the teachers created is
+                                very welcoming and has felt like home!</p>
+                        </div>
+                        <div class="review-item">
+                            <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>My daughter Talia learned to be organized and to take part in activities. The teachers
+                                are courteous and very supportive.</p>
+                        </div>
+                        <div class="review-item">
+                            <img class="quote-icon"  src="img/en_qout.png" alt="">
+                            <p>Nuuh now knows how to recite multiple surahs from the Quran in such a short period of
+                                time. He is also more familiar with his Arabic letters and his Arabic vocabulary has
+                                improved greatly.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 arabic-column" dir="rtl">
+                        <div class="review-item">
+                            <img class="quote-icon-ar"   src="img/ar_qout.png" alt="">
+                            <p>رغم المدة الزمنية القصيرة من بداية السنة، لاحظنا تغير ملحوظ في ابننا إلى الأفضل من جميع
+                                النواحي الأكاديمية والدينية والشخصية.</p>
+                        </div>
+                        <div class="review-item">
+                                <img class="quote-icon-ar"   src="img/ar_qout.png" alt="">
+                            <p>أكاديمية جنى صرح تعليمي وتربوي ممتاز، حريصون على كل طفل من جميع النواحي الأكاديمية
+                                والدينية والشخصية في بيئة آمنة و مهتمة.</p>
+                        </div>
+                        <div class="review-item">
+                                <img class="quote-icon-ar"   src="img/ar_qout.png" alt="">
+                            <p>جميع المدرسات مهتمين بتقدم ونجاح الطفل. أهم شيء بالنسبة لعائلتنا هو الاهتمام في المدرسة
+                                بتنمية اللغة العربية والتربية الإسلامية، حيث يتم تدريس نصف الأسبوع الدراسي باللغة
+                                العربية، وهذا يساعد ابنتنا في تحسين مهاراتها في المحادثة والكتابة باللغة العربية.
+                                الأطفال أيضاً يحفظون سوراً صغيرة من القرآن من سن صغير. جزاهم الله خير المدرسات جميعاً
+                                على مجهودهم الكبير وحسن رعايتهم للأطفال.</p>
+                        </div>
+                        <div class="review-item">
+                                <img class="quote-icon-ar"   src="img/ar_qout.png" alt="">
+                            <p>ابنتي متحمسة للذهاب الى المدرسة كل يوم و تحب جميع معلماتها واصدقائها. هذا الحب جعلها
+                                أيضاً متحمسة للتعليم والتركيز في المواد والدراسة. تعود ابنتي كل يوم من المدرسة مكتسبة
+                                معلومات جديدة ليس فقط عن اللغات ولكن ايضا في الاسلام.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="BOOK" class="book-tour-section">
+            <div class="container-fluid p-0">
+                <div class="tour-wrapper">
+
+                    <div class="tour-left">
+                        <div class="tour-blob-frame">
+                            <img src="img/new/11.png" alt="Children Learning">
+                        </div>
+                    </div>
+
+                    <div class="tour-right">
+                        <div class="form-container">
+                            <h2 class="form-main-title">Book a Tour</h2>
+
+                            <form action="https://formspree.io/f/mnjovnze" method="POST">
+
+                                <div class="form-group">
+                                    <label>Parent / Guardian First Name</label>
+                                    <input type="text" name="First Name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Parent / Guardian Last Name</label>
+                                    <input type="text" name="Last Name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Please Select a Grade</label>
+                                    <select name="Grade Level" required>
+                                        <option value="" disabled selected></option>
+                                        <option value="preschool">Preschool (3 Years) </option>
+                                        <option value="kindergarten">Kindergarten (JK – 4 Years to SK – 5 Years)</option>
+                                        <option value="grade1">Grade 1</option>
+                                        <option value="grade2">Grade 2</option>
+                                        <option value="grade3">Grade 3</option>
+                                        <option value="grade3">Grade 4</option>
+                                        <option value="grade3">Grade 5</option>
+                                  
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Please Enter Your Email Address</label>
+                                    <input type="email" name="Email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Please Enter Your Phone Number</label>
+                                    <input type="tel" name="Phone Number" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Additional Comments/Questions</label>
+                                    <textarea name="Comments" rows="3"></textarea>
+                                </div>
+
+                                <input type="hidden" name="_subject" value="New Tour Booking from Website">
+
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn-book-submit">Book a Tour</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section id="steps" class="registration-section">
+            <div class="reg-container">
+
+                <div class="reg-left">
+                    <h2 class="reg-main-title">Steps for registration</h2>
+
+                    <div class="step-item">
+                        <div class="step-header">
+                            <span class="step-circle">1</span>
+                            <h3 class="step-title">The Tour</h3>
+                        </div>
+                        <p class="step-text">
+                            We invite you to enjoy a personalized tour of our school, where you will have the
+                            opportunity to meet our dedicated teachers, ask questions, and explore our learning
+                            environment. We look forward to welcoming you into the Jana Academy's family.
+                        </p>
+                        <div class="mt-3">
+                            <a href="#BOOK" class="btn-reg-white">Book a Tour</a>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-header">
+                            <span class="step-circle">2</span>
+                            <h3 class="step-title">The Decision</h3>
+                        </div>
+                        <p class="step-text">
+                            Admission decisions are made after a careful review of each applicant's overall suitability
+                            for the Jana Academy experience.
+                        </p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-header">
+                            <span class="step-circle">3</span>
+                            <h3 class="step-title">Registration</h3>
+                        </div>
+                        <p class="step-text">
+                            Once accepted, you will be invited to submit our Application Package: Registration Form
+                            electronically, and the required payments. Please visit the tuition and fees page for
+                            detailed payment options.
+                        </p>
+                        <div class="mt-3">
+                            <a href="https://form.jotform.com/233487123972260" class="btn-reg-white">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reg-right">
+                    <div class="reg-blob-frame">
+                        <img src="img/new/12.png" alt="Children playing with blocks">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <div id="Calendar" class="calendar-row">
+
+            <div class="month-container">
+                <div class="header">September</div>
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="days-grid">
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day faded">7</div>
+                    <div class="day star-marker">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day faded">14</div>
+                    <div class="day star-marker"> <span class="circle-yellow">15</span></div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day "><span class="circle-yellow">18</span></div>
+                    <div class="day"><span class="circle-green">19</span></div>
+                    <div class="day">20</div>
+                    <div class="day faded">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day faded">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                </div>
+            </div>
+
+            <div class="month-container">
+                <div class="header">October</div>
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="days-grid">
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day faded">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day faded">12</div>
+                    <div class="day"><span class="circle-green">13</span></div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day faded">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day faded">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    <div class="day">31</div>
+                </div>
+            </div>
+
+            <div class="month-container">
+                <div class="header">November</div>
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="days-grid">
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day faded">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day faded">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day faded">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day faded">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day"><span class="circle-green">28</span></div>
+                    <div class="day">29</div>
+                    <div class="day faded">30</div>
+                </div>
+            </div>
+
+            <div class="month-container">
+                <div class="header">December</div>
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="days-grid">
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day faded">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day faded">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day faded">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day"><span class="circle-yellow">24</span></div>
+                    <div class="day"><span class="circle-yellow">25</span></div>
+                    <div class="day"><span class="circle-yellow">26</span></div>
+                    <div class="day"><span class="circle-yellow">27</span></div>
+                    <div class="day faded"><span class="circle-yellow">28</span></div>
+                    <div class="day"><span class="circle-yellow">29</span></div>
+                    <div class="day"><span class="circle-yellow">30</span></div>
+                    <div class="day"><span class="circle-yellow">31</span></div>
+                </div>
+            </div>
+
+            <div class="month-container">
+                <div class="header">January</div>
+                <div class="weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="days-grid">
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"><span class="circle-yellow">1</span></div>
+                    <div class="day"><span class="circle-yellow">2</span></div>
+                    <div class="day">3</div>
+                    <div class="day faded">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day faded">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day faded">18</div>
+                    <div class="day"><span class="circle-green">19</span></div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day faded">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    <div class="day">31</div>
+                </div>
+            </div>
+
         </div>
-    </section>
-
-    <!-- Features Section (Why Choose Jana Academy) -->
-    <section class="features">
-      <div class="section-title" data-aos="fade-up" data-bilingual>
-          <div data-lang-en>
-              <h2>Why Choose Jana Academy?</h2>
-              <p>Nurturing young minds with Islamic values and academic excellence</p>
-          </div>
-          <div data-lang-ar>
-              <h2>لماذا تختار أكاديمية جنى؟</h2>
-              <p>رعاية العقول الشابة بالقيم الإسلامية والتميز الأكاديمي</p>
-          </div>
-      </div>
       
-      <div class="features-grid">
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="100" data-bilingual>
-              <img src="janaacademy_gallery/jana1 (26).jpeg" alt="Islamic Education">
-              <div data-lang-en>
-                  <h3>Islamic Education</h3>
-                  <p>Comprehensive Islamic studies curriculum integrated with modern educational methods.</p>
-              </div>
-              <div data-lang-ar>
-                  <h3>التعليم الإسلامي</h3>
-                  <p>منهج شامل للدراسات الإسلامية متكامل مع أساليب التعليم الحديثة.</p>
-              </div>
-          </div>
-          
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="200" data-bilingual>
-              <img src="janaacademy_gallery/jana1 (4).jpeg" alt="Qualified Teachers">
-              <div data-lang-en>
-                  <h3>Expert Teachers</h3>
-                  <p>Highly qualified educators with extensive experience in both Islamic and academic education.</p>
-              </div>
-              <div data-lang-ar>
-                  <h3>معلمون خبراء</h3>
-                  <p>مربون مؤهلون تأهيلاً عالياً ذوو خبرة واسعة في التعليم الإسلامي والأكاديمي.</p>
-              </div>
-          </div>
-          
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-bilingual>
-              <img src="janaacademy_gallery/jana1 (10).jpeg" alt="Safe Environment">
-              <div data-lang-en>
-                  <h3>Safe Environment</h3>
-                  <p>State-of-the-art facilities ensuring a secure and nurturing learning environment.</p>
-              </div>
-              <div data-lang-ar>
-                  <h3>بيئة آمنة</h3>
-                  <p>مرافق حديثة تضمن بيئة تعليمية آمنة وداعمة.</p>
-              </div>
-          </div>
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="300" data-bilingual>
-              <img src="interactive-play.png" alt="Peel Curriculum">
-              <div data-lang-en>
-                  <h3>Peel Curriculum</h3>
-                  <p>We follow the Peel District School Board for English, Math, Social Studies, Physical Education and Art.</p>
-              </div>
-              <div data-lang-ar>
-                  <h3>منهج بيل</h3>
-                  <p>نتبع مجلس مدارس منطقة بيل للغة الإنجليزية والرياضيات والدراسات الاجتماعية والتربية البدنية والفنون.</p>
-              </div>
-          </div>
-      </div>
-    </section>
+        <div class="jcal-v2-wrapper">
 
-    <!-- Calendar Section Start -->
-    <section id="calendar" class="calendar-section" data-bilingual>
-        <div class="container">
-            <div data-lang-en>
-                <h2 class="section-title" data-aos="fade-up">2024-2025 Academic Calendar</h2>
-                <p class="section-description" data-aos="fade-up" data-aos-delay="100">Download our academic calendar to stay up to date with all important dates and events.</p>
+            <div class="jcal-v2-month">
+                <div class="jcal-v2-header jcal-v2-blue-light">February</div>
+                <div class="jcal-v2-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="jcal-v2-days-grid">
+                    <div class="jcal-v2-day-cell">1</div>
+                    <div class="jcal-v2-day-cell">2</div>
+                    <div class="jcal-v2-day-cell">3</div>
+                    <div class="jcal-v2-day-cell">4</div>
+                    <div class="jcal-v2-day-cell">5</div>
+                    <div class="jcal-v2-day-cell">6</div>
+                    <div class="jcal-v2-day-cell">7</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">8</div>
+                    <div class="jcal-v2-day-cell">9</div>
+                    <div class="jcal-v2-day-cell">10</div>
+                    <div class="jcal-v2-day-cell">11</div>
+                    <div class="jcal-v2-day-cell">12</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-pd">13</span></div>
+                    <div class="jcal-v2-day-cell">14</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">15</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-stat">16</span></div>
+                    <div class="jcal-v2-day-cell">17</div>
+                    <div class="jcal-v2-day-cell">18</div>
+                    <div class="jcal-v2-day-cell">19</div>
+                    <div class="jcal-v2-day-cell">20</div>
+                    <div class="jcal-v2-day-cell">21</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">22</div>
+                    <div class="jcal-v2-day-cell">23</div>
+                    <div class="jcal-v2-day-cell">24</div>
+                    <div class="jcal-v2-day-cell">25</div>
+                    <div class="jcal-v2-day-cell">26</div>
+                    <div class="jcal-v2-day-cell">27</div>
+                    <div class="jcal-v2-day-cell">28</div>
+                </div>
             </div>
-            <div data-lang-ar>
-                <h2 class="section-title" data-aos="fade-up">التقويم الأكاديمي 2024-2025</h2>
-                <p class="section-description" data-aos="fade-up" data-aos-delay="100">قم بتنزيل التقويم الأكاديمي للبقاء على اطلاع بجميع التواريخ والأحداث المهمة.</p>
+
+            <div class="jcal-v2-month">
+                <div class="jcal-v2-header jcal-v2-blue-dark">March</div>
+                <div class="jcal-v2-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="jcal-v2-days-grid">
+                    <div class="jcal-v2-day-cell">1</div>
+                    <div class="jcal-v2-day-cell">2</div>
+                    <div class="jcal-v2-day-cell">3</div>
+                    <div class="jcal-v2-day-cell">4</div>
+                    <div class="jcal-v2-day-cell">5</div>
+                    <div class="jcal-v2-day-cell">6</div>
+                    <div class="jcal-v2-day-cell">7</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">8</div>
+                    <div class="jcal-v2-day-cell">9</div>
+                    <div class="jcal-v2-day-cell">10</div>
+                    <div class="jcal-v2-day-cell">11</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">12</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">13</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">14</span></div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded"><span class="jcal-v2-mark jcal-v2-islamic">15</span>
+                    </div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">16</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">17</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">18</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">19</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">20</span></div>
+                    <div class="jcal-v2-day-cell">21</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">22</div>
+                    <div class="jcal-v2-day-cell">23</div>
+                    <div class="jcal-v2-day-cell">24</div>
+                    <div class="jcal-v2-day-cell">25</div>
+                    <div class="jcal-v2-day-cell">26</div>
+                    <div class="jcal-v2-day-cell">27</div>
+                    <div class="jcal-v2-day-cell">28</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">29</div>
+                    <div class="jcal-v2-day-cell">30</div>
+                    <div class="jcal-v2-day-cell">31</div>
+                </div>
             </div>
-            
-            <div class="calendar-container" data-aos="fade-up" data-aos-delay="200">
-                <img src="jana-calendar-24-25.jpeg" alt="Jana Academy Calendar 2024-2025" class="calendar-image">
-                <div class="calendar-actions">
-                    <a href="jana-calendar-24-25.jpeg" download class="download-button" data-lang-en>
-                        <i class="fas fa-download"></i> Download Calendar
-                    </a>
-                    <a href="jana-calendar-24-25.jpeg" download class="download-button" data-lang-ar>
-                        <i class="fas fa-download"></i> تنزيل التقويم
-                    </a>
+
+            <div class="jcal-v2-month">
+                <div class="jcal-v2-header jcal-v2-blue-light">April</div>
+                <div class="jcal-v2-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="jcal-v2-days-grid">
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell">1</div>
+                    <div class="jcal-v2-day-cell">2</div>
+                    <div class="jcal-v2-day-cell">3</div>
+                    <div class="jcal-v2-day-cell">4</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">5</div>
+                    <div class="jcal-v2-day-cell">6</div>
+                    <div class="jcal-v2-day-cell">7</div>
+                    <div class="jcal-v2-day-cell">8</div>
+                    <div class="jcal-v2-day-cell">9</div>
+                    <div class="jcal-v2-day-cell">10</div>
+                    <div class="jcal-v2-day-cell">11</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">12</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-stat">13</span></div>
+                    <div class="jcal-v2-day-cell">14</div>
+                    <div class="jcal-v2-day-cell">15</div>
+                    <div class="jcal-v2-day-cell">16</div>
+                    <div class="jcal-v2-day-cell">17</div>
+                    <div class="jcal-v2-day-cell">18</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">19</div>
+                    <div class="jcal-v2-day-cell">20</div>
+                    <div class="jcal-v2-day-cell">21</div>
+                    <div class="jcal-v2-day-cell">22</div>
+                    <div class="jcal-v2-day-cell">23</div>
+                    <div class="jcal-v2-day-cell">24</div>
+                    <div class="jcal-v2-day-cell">25</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">26</div>
+                    <div class="jcal-v2-day-cell">27</div>
+                    <div class="jcal-v2-day-cell">28</div>
+                    <div class="jcal-v2-day-cell">29</div>
+                    <div class="jcal-v2-day-cell">30</div>
+                </div>
+            </div>
+
+            <div class="jcal-v2-month">
+                <div class="jcal-v2-header jcal-v2-blue-dark">May</div>
+                <div class="jcal-v2-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="jcal-v2-days-grid">
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell">1</div>
+                    <div class="jcal-v2-day-cell">2</div>
+                    <div class="jcal-v2-day-cell">3</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">4</div>
+                    <div class="jcal-v2-day-cell">5</div>
+                    <div class="jcal-v2-day-cell">6</div>
+                    <div class="jcal-v2-day-cell">7</div>
+                    <div class="jcal-v2-day-cell">8</div>
+                    <div class="jcal-v2-day-cell">9</div>
+                    <div class="jcal-v2-day-cell">10</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">11</div>
+                    <div class="jcal-v2-day-cell">12</div>
+                    <div class="jcal-v2-day-cell">13</div>
+                    <div class="jcal-v2-day-cell">14</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-pd">15</span></div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-islamic">16</span></div>
+                    <div class="jcal-v2-day-cell">17</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded"><span class="jcal-v2-mark jcal-v2-stat">18</span></div>
+                    <div class="jcal-v2-day-cell">19</div>
+                    <div class="jcal-v2-day-cell">20</div>
+                    <div class="jcal-v2-day-cell">21</div>
+                    <div class="jcal-v2-day-cell">22</div>
+                    <div class="jcal-v2-day-cell">23</div>
+                    <div class="jcal-v2-day-cell">24</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">25</div>
+                    <div class="jcal-v2-day-cell">26</div>
+                    <div class="jcal-v2-day-cell">27</div>
+                    <div class="jcal-v2-day-cell">28</div>
+                    <div class="jcal-v2-day-cell">29</div>
+                    <div class="jcal-v2-day-cell">30</div>
+                    <div class="jcal-v2-day-cell">31</div>
+                </div>
+            </div>
+
+            <div class="jcal-v2-month">
+                <div class="jcal-v2-header jcal-v2-blue-light">June</div>
+                <div class="jcal-v2-weekdays">
+                    <div>S</div>
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                </div>
+                <div class="jcal-v2-days-grid">
+                    <div class="jcal-v2-day-cell"></div>
+                    <div class="jcal-v2-day-cell">1</div>
+                    <div class="jcal-v2-day-cell">2</div>
+                    <div class="jcal-v2-day-cell">3</div>
+                    <div class="jcal-v2-day-cell">4</div>
+                    <div class="jcal-v2-day-cell">5</div>
+                    <div class="jcal-v2-day-cell">6</div>
+                    <div class="jcal-v2-day-cell">7</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">8</div>
+                    <div class="jcal-v2-day-cell"><span class="jcal-v2-mark jcal-v2-pd">9</span></div>
+                    <div class="jcal-v2-day-cell">10</div>
+                    <div class="jcal-v2-day-cell">11</div>
+                    <div class="jcal-v2-day-cell">12</div>
+                    <div class="jcal-v2-day-cell">13</div>
+                    <div class="jcal-v2-day-cell">14</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">15</div>
+                    <div class="jcal-v2-day-cell">16</div>
+                    <div class="jcal-v2-day-cell">17</div>
+                    <div class="jcal-v2-day-cell">18</div>
+                    <div class="jcal-v2-day-cell jcal-v2-star">19</div>
+                    <div class="jcal-v2-day-cell">20</div>
+                    <div class="jcal-v2-day-cell">21</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">22</div>
+                    <div class="jcal-v2-day-cell">23</div>
+                    <div class="jcal-v2-day-cell">24</div>
+                    <div class="jcal-v2-day-cell">25</div>
+                    <div class="jcal-v2-day-cell jcal-v2-star">26</div>
+                    <div class="jcal-v2-day-cell">27</div>
+                    <div class="jcal-v2-day-cell">28</div>
+                    <div class="jcal-v2-day-cell jcal-v2-faded">29</div>
+                    <div class="jcal-v2-day-cell">30</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="jana-btm-section">
+            <div class="jana-btm-top-row">
+                <div class="jana-btm-logo-area">
+                    <img src="img/Screenshot 2026-03-31 053214.png" alt="">
+                </div>
+
+                <div class="jana-btm-events-grid">
+                    <div class="jana-btm-events-col">
+                        <p><strong>Sep 8, 2025</strong> | First Day of School : JK, SK, & Grades 1-4</p>
+                        <p><strong>Sep 15, 2025</strong> | First Day of School : Pre-K</p>
+                        <p><strong>Oct 13, 2025</strong> | Thanksgiving Day</p>
+                        <p><strong>Dec 24-Jan 2, 2026</strong> | Winter Break</p>
+                        <p><strong>Feb 16, 2026</strong> | Family Day</p>
+                        <p><strong>Mar 12-20, 2026</strong> | Ramadan & Eid Break</p>
+                    </div>
+                    <div class="jana-btm-events-col">
+                        <p><strong>Apr 13, 2026</strong> | Good Friday</p>
+                        <p><strong>May 18, 2026</strong> | Victoria Day</p>
+                        <p><strong>May 16, 2026</strong> | Eid Al-Adha</p>
+                        <p><strong>Jun 19, 2026</strong> | Last Day of School Pre-K, JK, SK</p>
+                        <p><strong>Jun 26, 2026</strong> | Last Day of School Grades 1-4</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jana-btm-divider"></div>
+
+            <div class="jana-btm-legend">
+                <div class="jana-btm-legend-item">
+                    <span class="jana-btm-dot jana-stat"></span> Statutory Holiday
+                </div>
+                <div class="jana-btm-legend-item">
+                    <span class="jana-btm-dot jana-pd"></span> PD Day
+                </div>
+                <div class="jana-btm-legend-item">
+                    <span class="jana-btm-dot jana-isl"></span> Islamic Holiday
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Calendar Section End -->
-
-    <section id="location" class="location-section">
-        <div class="location-container" data-aos="fade-up" data-bilingual>
-            <div class="location-text">
-                <div data-lang-en>
-                    <h2>Where Can You Find Us?</h2>
-                    <p class="address">15 Pearl St, Mississauga, ON L5M 1X1</p>
-                    <p>Offering a welcoming environment for your child's development.</p>
-                </div>
-                <div data-lang-ar>
-                    <h2>أين يمكنك أن تجدنا؟</h2>
-                    <p class="address">15 Pearl St, Mississauga, ON L5M 1X1</p>
-                    <p>نقدم بيئة ترحيبية لتطوير طفلك.</p>
-                </div>
-            </div>
-            <div class="map-container">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.2472019996944!2d-79.71603782264629!3d43.580567057123844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b41b938172f2b%3A0xb7f45ae4987f2142!2s15%20Pearl%20St%2C%20Mississauga%2C%20ON%20L5M%201X1!5e0!3m2!1sen!2sca!4v1730060039871!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
+          <div class="gallery-wrapper">
+  <div class="gallery">
+    <img style="width: 100%; height: 100%;" src="Gallery/Screenshot 2026-04-15 144348.png" alt="">
+</div>
+    </div>
+    <section id="call" class="jana-j-section">
+        <div class="jana-j-image-side">
+       
         </div>
-    </section>
 
-    <section id="contact" class="contact-section">
-        <div class="contact-container" data-aos="fade-up" data-bilingual>
-            <div data-lang-en>
-                <h2>Contact Us</h2>
-                <p>We would love to hear from you. Reach out to us for any questions or inquiries:</p>
-                
-                <div class="contact-details">
-                    <p>Email: <span class="contact-info">janaacademycanada@gmail.com</span></p>
-                    <p>Phone: <span class="contact-info">416-771-3722</span></p>
+        <div class="jana-j-content-side">
+            <h2 class="jana-j-heading">START YOUR JOURNEY WITH US</h2>
+
+            <div class="jana-j-pin-wrapper">
+                <div class="jana-j-pin-image">
+                    <img src="img/new/13.png" alt="Students">
                 </div>
             </div>
-            <div data-lang-ar>
-                <h2>اتصل بنا</h2>
-                <p>يسعدنا أن نسمع منك. تواصل معنا لأي أسئلة أو استفسارات:</p>
-                
-                <div class="contact-details">
-                    <p>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></p>
-                    <p>الهاتف: <span class="contact-info">416-771-3722</span></p>
-                </div>
+
+            <div class="jana-j-info-list">
+                 <a href="https://www.instagram.com/jana.academy" style="text-decoration: none;"><strong>Instagram:</strong>@jana.academy</a>
+                <p><strong>Admission Email Address:</strong> <a
+                        href="mailto:Janaacademycanada@gmail.com">Janaacademycanada@gmail.com</a></p>
+                <a href="https://maps.app.goo.gl/1yrV895sPYmdJfFN6?g_st=ac" style="text-decoration: none;"><strong>School Address:</strong> 15 Pearl St, Mississauga, ON, L5M 1X1</a>
+                <p><strong>Hours:</strong> 9:00 AM &ndash; 3:00 PM Monday to Friday</p>
+                <p><strong>Admission phone number:</strong> <a href="tel:4167713722">4167713722</a></p>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column" data-bilingual>
-                <div data-lang-en>
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li>Phone: <span class="contact-info">416-771-3722</span></li>
-                        <li>Email: <span class="contact-info">janaacademycanada@gmail.com</span></li>
-                        <li>Address: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
-                    </ul>
-                </div>
-                <div data-lang-ar>
-                    <h3>اتصل بنا</h3>
-                    <ul>
-                        <li>الهاتف: <span class="contact-info">416-771-3722</span></li>
-                        <li>البريد الإلكتروني: <span class="contact-info">janaacademycanada@gmail.com</span></li>
-                        <li>العنوان: <span class="contact-info">15 Pearl St, Mississauga, ON, L5M 1X1</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-column" data-bilingual>
-                <div data-lang-en>
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="team.html">Our Team</a></li>
-                    </ul>
-                </div>
-                <div data-lang-ar>
-                    <h3>روابط سريعة</h3>
-                    <ul>
-                        <li><a href="about.html">من نحن</a></li>
-                        <li><a href="gallery.html">معرض الصور</a></li>
-                        <li><a href="team.html">فريقنا</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-column" data-bilingual>
-                <div data-lang-en>
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <li><a href="#facebook">Facebook</a></li>
-                        <li><a href="#instagram">Instagram</a></li>
-                        <li><a href="#twitter">Twitter</a></li>
-                        <li><a href="#linkedin">LinkedIn</a></li>
-                    </ul>
-                </div>
-                <div data-lang-ar>
-                    <h3>تابعنا</h3>
-                    <ul>
-                        <li><a href="#facebook">فيسبوك</a></li>
-                        <li><a href="#instagram">انستغرام</a></li>
-                        <li><a href="#twitter">تويتر</a></li>
-                        <li><a href="#linkedin">لينكد إن</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hero Slideshow
-            const slides = document.querySelectorAll('.hero-slideshow img');
-            let currentSlide = 0;
-            let slideInterval;
+     <script>
+        const character = document.getElementById('character');
+        const bubble = document.getElementById('bubble');
+        const messages = [
+            "Welcome to Jana Academy!"
+        ];
 
-            function showSlide(index) {
-                // Remove active class from all slides
-                slides.forEach(slide => {
-                    slide.classList.remove('active');
-                    slide.style.opacity = '0';
-                });
-                
-                // Add active class to target slide
-                slides[index].classList.add('active');
-                slides[index].style.opacity = '0';
-                
-                // Force a reflow before changing opacity
-                slides[index].offsetHeight;
-                
-                // Set opacity to 1 to trigger transition
-                slides[index].style.opacity = '1';
-            }
+        function animateCharacter(type) {
+            // Remove existing animation classes
+            character.classList.remove('jump', 'spin');
+            
+            // Trigger reflow to restart animation
+            void character.offsetWidth;
+            
+            // Add the new animation class
+            character.classList.add(type);
+            
+            // Remove class after animation ends
+            setTimeout(() => {
+                character.classList.remove(type);
+            }, 1000);
+        }
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-                resetTimer();
-            }
+        function saySomething() {
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            bubble.innerText = randomMsg;
+            bubble.classList.add('visible-message');
+            
+            setTimeout(() => {
+                bubble.classList.remove('visible-message');
+            }, 3000);
+        }
 
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(currentSlide);
-                resetTimer();
-            }
+        // Add initial wave animation
+        character.classList.add('wave');
 
-            function resetTimer() {
-                // Clear the existing interval and start a new one
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 10000);
-            }
-
-            // Initialize first slide and start slideshow
-            if (slides.length > 0) {
-                showSlide(0);
-                slideInterval = setInterval(nextSlide, 10000);
-            }
-
-            // Make functions globally available
-            window.nextSlide = nextSlide;
-            window.prevSlide = prevSlide;
-
-            // Initialize AOS
-            AOS.init({
-                duration: 1000,
-                once: true
-            });
+        // Click on character to jump
+        document.getElementById('characterBox').addEventListener('click', () => {
+            animateCharacter('jump');
+            saySomething();
         });
     </script>
-    <script src="js/main.js"></script>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, span");
+
+    elements.forEach((el, index) => {
+      el.classList.add("animate__animated");
+      el.setAttribute("data-aos", "fade-up");
+      el.setAttribute("data-aos-delay", String(index * 80));
+
+      el.addEventListener("aos:in", function () {
+        el.classList.add("animate__bounce");
+      });
+    });
+
+    AOS.init({
+      once: true
+    });
+  });
+  
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll('img:not(.childs)');
+
+    images.forEach((img, index) => {
+      img.setAttribute("data-aos", "bounce-in");
+      img.setAttribute("data-aos-duration", "1000");
+      img.setAttribute("data-aos-delay", String(index * 100));
+      img.setAttribute("data-aos-once", "true");
+    });
+
+    AOS.init({
+      once: true,
+      offset: 80,
+      duration: 1000
+    });
+  });
+</script>
+
+
+<script>
+function typeWriter(element, speed) {
+    // Use innerText to get the text content with existing spaces preserved
+    let text = element.innerText;
+
+    // 1. Fix CamelCase (e.g., "RandahAlhorani" -> "Randah Alhorani")
+    text = text.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+    // 2. Fix Letter-Number transitions (e.g., "over30" -> "over 30")
+    text = text.replace(/([a-zA-Z])([0-9])/g, '$1 $2');
+    text = text.replace(/([0-9])([a-zA-Z])/g, '$1 $2');
+
+    // 3. Fix Punctuation (ensure ONE space after , . ! ? : ;)
+    // This regex adds a space after punctuation if there isn't one already
+    text = text.replace(/([,.!?;:])(?!\s)/g, '$1 ');
+
+    // 4. Clean up any double spaces created by the above rules
+    text = text.replace(/\s+/g, ' ').trim();
+
+    element.innerText = ''; // Clear the existing text
+    let i = 0;
+
+    // Styles to ensure proper wrapping
+    element.style.whiteSpace = 'pre-wrap'; // Preserves spaces and allows wrapping
+    element.style.overflow = 'hidden';
+    element.style.display = 'block';
+
+    function type() {
+        if (i < text.length) {
+            element.innerText += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+// Apply the effect
+document.querySelectorAll('p').forEach((p) => {
+    typeWriter(p, 10); // Adjusted speed to 50ms for a natural feel
+});
+
+</script>
+ 
 </body>
+
 </html>
